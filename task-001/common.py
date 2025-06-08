@@ -62,7 +62,7 @@ class Rule(ABC):
             'valid_indices': valid_rows
         }
 
-    def save_validation_results(self, dataset: Dict[str, pd.DataFrame], output_dir: str = 'validation_results'):
+    def save_validation_results(self, dataset: Dict[str, pd.DataFrame], output_dir: str):
         """
         Save validation results to CSV files.
 
@@ -111,46 +111,30 @@ class Rule(ABC):
 
 
 class RuleFactory:
-    """Factory class for creating rule instances from configuration."""
-
-    _rule_classes = {}
+    """Factory class for creating rule instances."""
+    _rule_types = {}
 
     @classmethod
     def register_rule_type(cls, rule_type: str, rule_class: type):
-        """Register a new rule type with its implementation class."""
-        cls._rule_classes[rule_type] = rule_class
+        """Register a rule type with its implementing class."""
+        cls._rule_types[rule_type] = rule_class
 
     @classmethod
     def create_rule(cls, rule_config: Dict[str, Any]) -> Rule:
-        """
-        Create a rule instance from configuration.
-
-        Parameters:
-        -----------
-        rule_config : Dict[str, Any]
-            Rule configuration from JSON
-
-        Returns:
-        --------
-        Rule
-            An instance of the appropriate Rule subclass
-        """
+        """Create a rule instance based on the rule type."""
         rule_type = rule_config.get('rule_type')
-
-        if rule_type not in cls._rule_classes:
-            raise ValueError(f"Unknown rule type: '{rule_type}'")
-
-        rule_class = cls._rule_classes[rule_type]
-        return rule_class(rule_config)
+        if rule_type not in cls._rule_types:
+            raise ValueError(f"Unknown rule type: {rule_type}")
+        return cls._rule_types[rule_type](rule_config)
 
 
 class DataLoader:
-    """Class for loading datasets from Excel files."""
+    """Class for loading and managing datasets."""
 
     @staticmethod
     def load_datasets(data_dir: str = '.') -> Dict[str, pd.DataFrame]:
         """
-        Load all datasets from Excel files.
+        Load all Excel datasets from the specified directory.
 
         Parameters:
         -----------
@@ -162,24 +146,84 @@ class DataLoader:
         Dict[str, pd.DataFrame]
             Dictionary mapping table names to DataFrames
         """
-        dataset = {}
-
-        # Define file mappings
+        # Define file name mappings
         file_mappings = {
-            'uo': 'unita-organizzative.xlsx',
-            'enti': 'enti.xlsx',
-            'uo_sfe': 'unita-organizzative-che-ricevono-fatture-elettroniche.xlsx',
-            'responsabili': 'responsabili-della-transizione-al-digitale.xlsx'
+            'unita-organizzative.xlsx': 'uo',
+            'unita-organizzative-che-ricevono-fatture-elettroniche.xlsx': 'uo_sfe',
+            'responsabili-della-transizione-al-digitale.xlsx': 'responsabili',
+            'enti.xlsx': 'enti'
         }
 
-        # Load each file
-        for table_name, filename in file_mappings.items():
-            filepath = os.path.join(data_dir, filename)
-            if os.path.exists(filepath):
-                print(f"Loading {table_name} from {filename}...")
-                dataset[table_name] = pd.read_excel(filepath)
-                print(f"  Loaded {len(dataset[table_name])} rows")
-            else:
-                print(f"Warning: File {filepath} not found")
+        datasets = {}
+        excel_files = [f for f in os.listdir(data_dir) if f.endswith('.xlsx')]
 
-        return dataset 
+        # Print available files for debugging
+        print("\nAvailable Excel files:")
+        for file in excel_files:
+            print(f"  - {file}")
+
+        for file in excel_files:
+            # Get the table name from mappings or generate one
+            if file in file_mappings:
+                table_name = file_mappings[file]
+            else:
+                table_name = file.replace('.xlsx', '').replace('-', '_')
+
+            file_path = os.path.join(data_dir, file)
+            try:
+                print(f"\nLoading {file} as {table_name}...")
+                df = pd.read_excel(file_path)
+                datasets[table_name] = df
+                print(f"  Successfully loaded {len(df)} rows")
+            except Exception as e:
+                print(f"  Error loading {file}: {e}")
+
+        # Print loaded tables for debugging
+        print("\nLoaded tables:")
+        for table_name in datasets.keys():
+            print(f"  - {table_name}")
+
+        return datasets
+
+
+class RuleLoader:
+    """Class for loading rule configurations from JSON files."""
+
+    @staticmethod
+    def load_rules(json_dir: str = 'json') -> List[Dict[str, Any]]:
+        """
+        Load all rule configurations from JSON files in the specified directory.
+
+        Parameters:
+        -----------
+        json_dir : str
+            Directory containing the JSON rule configuration files
+
+        Returns:
+        --------
+        List[Dict[str, Any]]
+            List of rule configurations
+        """
+        import json
+        rules = []
+        
+        # Ensure the directory exists
+        if not os.path.exists(json_dir):
+            raise ValueError(f"JSON directory not found: {json_dir}")
+
+        # Get all JSON files in the directory
+        json_files = [f for f in os.listdir(json_dir) if f.endswith('.json')]
+
+        for file in json_files:
+            file_path = os.path.join(json_dir, file)
+            try:
+                with open(file_path, 'r', encoding='utf-8') as f:
+                    file_rules = json.load(f)
+                    if isinstance(file_rules, list):
+                        rules.extend(file_rules)
+                    else:
+                        rules.append(file_rules)
+            except Exception as e:
+                print(f"Error loading rules from {file}: {e}")
+
+        return rules 

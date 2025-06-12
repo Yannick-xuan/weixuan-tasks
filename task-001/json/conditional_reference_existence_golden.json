@@ -1,0 +1,272 @@
+[
+    {
+        "rule_type": "Conditional Reference Existence",
+        "rule": "IF uo.Descrizione_uo contains 'transizione al digitale' THEN uo.Codice_IPA must exist in enti.Codice_IPA",
+        "explanation": "When an organizational unit is designated as a digital transition office, it must reference an existing entity in the Entities table via IPA code. This ensures digital transition units are officially registered entities.",
+        "columns": [
+            {
+                "table": "uo",
+                "name": "Descrizione_uo"
+            },
+            {
+                "table": "enti",
+                "name": "Codice_IPA"
+            }
+        ],
+        "join_pairs": [
+            {
+                "left": {
+                    "table": "uo",
+                    "name": "Codice_IPA"
+                },
+                "right": {
+                    "table": "enti",
+                    "name": "Codice_IPA"
+                }
+            }
+        ]
+    },
+    {
+        "rule_type": "Conditional Reference Existence",
+        "rule": "IF uo.Descrizione_uo contains 'transizione al digitale' THEN uo.Codice_fiscale_ente must exist in enti.Codice_fiscale_ente",
+        "explanation": "When an organizational unit is designated as a digital transition office, it must reference an existing entity in the Entities table via tax ID. This ensures digital transition units have valid fiscal identities.",
+        "columns": [
+            {
+                "table": "uo",
+                "name": "Descrizione_uo"
+            },
+            {
+                "table": "enti",
+                "name": "Codice_fiscale_ente"
+            }
+        ],
+        "join_pairs": [
+            {
+                "left": {
+                    "table": "uo",
+                    "name": "Codice_fiscale_ente"
+                },
+                "right": {
+                    "table": "enti",
+                    "name": "Codice_fiscale_ente"
+                }
+            }
+        ]
+    },
+    {
+        "rule_type": "Conditional Reference Existence",
+        "rule": "IF uo.Descrizione_uo contains 'Transizione al Digitale' THEN uo.Codice_IPA must exist in enti.Codice_IPA",
+        "explanation": "When an organizational unit is designated as a Digital Transition office (capitalized), it must reference an existing entity in the Entities table via IPA code. This ensures proper record linking regardless of capitalization.",
+        "columns": [
+            {
+                "table": "uo",
+                "name": "Descrizione_uo"
+            },
+            {
+                "table": "enti",
+                "name": "Codice_IPA"
+            }
+        ],
+        "join_pairs": [
+            {
+                "left": {
+                    "table": "uo",
+                    "name": "Codice_IPA"
+                },
+                "right": {
+                    "table": "enti",
+                    "name": "Codice_IPA"
+                }
+            }
+        ]
+    },
+    {
+        "rule_type": "Conditional Reference Existence",
+        "rule": "IF uo.Descrizione_uo = 'Ufficio per la transizione al Digitale' THEN uo.Codice_IPA must exist in enti.Codice_IPA",
+        "explanation": "When an organizational unit is specifically named 'Office for Digital Transition', it must reference an existing entity in the Entities table via IPA code. This ensures standardized digital transition offices are properly registered.",
+        "columns": [
+            {
+                "table": "uo",
+                "name": "Descrizione_uo"
+            },
+            {
+                "table": "enti",
+                "name": "Codice_IPA"
+            }
+        ],
+        "join_pairs": [
+            {
+                "left": {
+                    "table": "uo",
+                    "name": "Codice_IPA"
+                },
+                "right": {
+                    "table": "enti",
+                    "name": "Codice_IPA"
+                }
+            }
+        ]
+    },
+    {
+        "rule_type": "Conditional Reference Existence",
+        "rule": "IF uo.Descrizione_uo = 'Ufficio per la transizione al Digitale' THEN uo.Codice_fiscale_ente must exist in enti.Codice_fiscale_ente",
+        "explanation": "When an organizational unit is specifically named 'Office for Digital Transition', it must reference an existing entity in the Entities table via tax ID. This ensures fiscal accountability for standardized digital transition offices.",
+        "columns": [
+            {
+                "table": "uo",
+                "name": "Descrizione_uo"
+            },
+            {
+                "table": "enti",
+                "name": "Codice_fiscale_ente"
+            }
+        ],
+        "join_pairs": [
+            {
+                "left": {
+                    "table": "uo",
+                    "name": "Codice_fiscale_ente"
+                },
+                "right": {
+                    "table": "enti",
+                    "name": "Codice_fiscale_ente"
+                }
+            }
+        ]
+    },
+    {
+        "rule_type": "Conditional Reference Existence",
+        "rule": "IF enti.Tipologia = 'Pubbliche Amministrazioni' THEN enti.Codice_IPA must exist in uo.Codice_IPA",
+        "explanation": "When an entity is classified as a public administration, its IPA code must exist inat least one organizational unit. This ensures all public administrations have a valid organizational structure.",
+        "columns": [
+            {
+                "table": "enti",
+                "name": "Tipologia"
+            },
+            {
+                "table": "uo",
+                "name": "Codice_IPA"
+            }
+        ],
+        "join_pairs": [
+            {
+                "left": {
+                    "table": "enti",
+                    "name": "Codice_IPA"
+                },
+                "right": {
+                    "table": "uo",
+                    "name": "Codice_IPA"
+                }
+            }
+        ]
+    },
+    {
+        "rule_type": "Conditional Reference Existence",
+        "rule": "IF enti.Tipologia = 'Pubbliche Amministrazioni' THEN enti.Codice_fiscale_ente must exist in uo.Codice_fiscale_ente",
+        "explanation": "When an entity is classified as a public administration, its tax ID must exist inat least one organizational unit. This ensures fiscal consistency across the organization structure.",
+        "columns": [
+            {
+                "table": "enti",
+                "name": "Tipologia"
+            },
+            {
+                "table": "uo",
+                "name": "Codice_fiscale_ente"
+            }
+        ],
+        "join_pairs": [
+            {
+                "left": {
+                    "table": "enti",
+                    "name": "Codice_fiscale_ente"
+                },
+                "right": {
+                    "table": "uo",
+                    "name": "Codice_fiscale_ente"
+                }
+            }
+        ]
+    },
+    {
+        "rule_type": "Conditional Reference Existence",
+        "rule": "IF enti.Tipo_Mail1 = 'Pec' THEN enti.Codice_IPA must exist in uo.Codice_IPA",
+        "explanation": "When an entity uses a certified email (PEC) as its primary email, its IPA code must exist inat least one organizational unit. This ensures entities with certified communications have proper organizational representation.",
+        "columns": [
+            {
+                "table": "enti",
+                "name": "Tipo_Mail1"
+            },
+            {
+                "table": "uo",
+                "name": "Codice_IPA"
+            }
+        ],
+        "join_pairs": [
+            {
+                "left": {
+                    "table": "enti",
+                    "name": "Codice_IPA"
+                },
+                "right": {
+                    "table": "uo",
+                    "name": "Codice_IPA"
+                }
+            }
+        ]
+    },
+    {
+        "rule_type": "Conditional Reference Existence",
+        "rule": "IF enti.Tipo_Mail1 = 'Pec' THEN enti.Codice_fiscale_ente must exist in uo.Codice_fiscale_ente",
+        "explanation": "When an entity uses a certified email (PEC) as its primary email, its tax ID must exist inat least one organizational unit. This ensures fiscal accountability in certified communications.",
+        "columns": [
+            {
+                "table": "enti",
+                "name": "Tipo_Mail1"
+            },
+            {
+                "table": "uo",
+                "name": "Codice_fiscale_ente"
+            }
+        ],
+        "join_pairs": [
+            {
+                "left": {
+                    "table": "enti",
+                    "name": "Codice_fiscale_ente"
+                },
+                "right": {
+                    "table": "uo",
+                    "name": "Codice_fiscale_ente"
+                }
+            }
+        ]
+    },
+    {
+        "rule_type": "Conditional Reference Existence",
+        "rule": "IF enti.Codice_ateco = '84.11.10' THEN enti.Codice_IPA must exist in uo_sfe.Codice_IPA",
+        "explanation": "When an entity has the economic activity code for general public administration (84.11.10), its IPA code must exist inan organizational unit that receives electronic invoices. This ensures e-invoicing compliance for core government activities.",
+        "columns": [
+            {
+                "table": "enti",
+                "name": "Codice_ateco"
+            },
+            {
+                "table": "uo_sfe",
+                "name": "Codice_IPA"
+            }
+        ],
+        "join_pairs": [
+            {
+                "left": {
+                    "table": "enti",
+                    "name": "Codice_IPA"
+                },
+                "right": {
+                    "table": "uo_sfe",
+                    "name": "Codice_IPA"
+                }
+            }
+        ]
+    }
+]

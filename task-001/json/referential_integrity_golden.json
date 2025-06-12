@@ -1,0 +1,246 @@
+[
+  {
+    "rule_type": "Referential Integrity",
+    "rule": "Every responsabili.Codice_IPA must refer to an existing enti.Codice_IPA.",
+    "explanation": "Every record in the responsabili_transizione_digitale table must reference a valid entity listed in the enti table via Codice_IPA, ensuring data integrity across these related tables.",
+    "columns": [
+      {
+        "table": "responsabili",
+        "name": "Codice_IPA"
+      },
+      {
+        "table": "enti",
+        "name": "Codice_IPA"
+      }
+    ],
+    "join_pairs": [
+      {
+        "left": {
+          "table": "responsabili",
+          "name": "Codice_IPA"
+        },
+        "right": {
+          "table": "enti",
+          "name": "Codice_IPA"
+        }
+      }
+    ]
+  },
+    {
+    "rule_type": "Referential Integrity",
+    "rule": "Every uo.Codice_uni_uo_padre must refer to an existing uo.Codice_uni_uo.",
+    "explanation": "Every superior organization (Codice_uni_uo_padre) referenced in the Unità_Organizzative table must exist as a valid organizational unit in the same table, ensuring hierarchical organizational structure integrity.",
+    "columns": [
+      {
+        "table": "uo",
+        "name": "Codice_uni_uo_padre"
+      },
+      {
+        "table": "uo",
+        "name": "Codice_uni_uo"
+      }
+    ],
+    "join_pairs": [
+      {
+        "left": {
+          "table": "uo",
+          "name": "Codice_uni_uo_padre"
+        },
+        "right": {
+          "table": "uo",
+          "name": "Codice_uni_uo"
+        }
+      }
+    ]
+  },
+  {
+    "rule_type": "Referential Integrity",
+    "rule": "Every responsabili.Codice_fiscale_ente must refer to an existing enti.Codice_fiscale_ente.",
+    "explanation": "Every record in the responsabili_transizione_digitale table must reference a valid entity listed in the enti table via Codice_fiscale_ente, maintaining proper referential relationships.",
+    "columns": [
+      {
+        "table": "responsabili",
+        "name": "Codice_fiscale_ente"
+      },
+      {
+        "table": "enti",
+        "name": "Codice_fiscale_ente"
+      }
+    ],
+    "join_pairs": [
+      {
+        "left": {
+          "table": "responsabili",
+          "name": "Codice_fiscale_ente"
+        },
+        "right": {
+          "table": "enti",
+          "name": "Codice_fiscale_ente"
+        }
+      }
+    ]
+  },
+  {
+    "rule_type": "Referential Integrity",
+    "rule": "Every responsabili.Codice_uni_uo must refer to an existing uo.Codice_uni_uo.",
+    "explanation": "Every record in the responsabili_transizione_digitale table must reference a valid entity listed in the unita_organizzative table via Codice_uni_uo, maintaining organizational hierarchy integrity.",
+    "columns": [
+      {
+        "table": "responsabili",
+        "name": "Codice_uni_uo"
+      },
+      {
+        "table": "uo",
+        "name": "Codice_uni_uo"
+      }
+    ],
+    "join_pairs": [
+      {
+        "left": {
+          "table": "responsabili",
+          "name": "Codice_uni_uo"
+        },
+        "right": {
+          "table": "uo",
+          "name": "Codice_uni_uo"
+        }
+      }
+    ]
+  },
+  {
+    "rule_type": "Referential Integrity",
+    "rule": "Every uo_sfe.Codice_IPA must refer to an existing enti.Codice_IPA.",
+    "explanation": "Every record in the Unità_Organizzative_SFE table must reference a valid entity listed in the enti table via Codice_IPA, ensuring proper entity relationships.",
+    "columns": [
+      {
+        "table": "uo_sfe",
+        "name": "Codice_IPA"
+      },
+      {
+        "table": "enti",
+        "name": "Codice_IPA"
+      }
+    ],
+    "join_pairs": [
+      {
+        "left": {
+          "table": "uo_sfe",
+          "name": "Codice_IPA"
+        },
+        "right": {
+          "table": "enti",
+          "name": "Codice_IPA"
+        }
+      }
+    ]
+  },
+  {
+    "rule_type": "Referential Integrity",
+    "rule": "Every uo_sfe.Codice_fiscale_ente must refer to an existing enti.Codice_fiscale_ente.",
+    "explanation": "Every record in the Unità_Organizzative_SFE table must reference a valid entity listed in the enti table via Codice_fiscale_ente, maintaining data consistency.",
+    "columns": [
+      {
+        "table": "uo_sfe",
+        "name": "Codice_fiscale_ente"
+      },
+      {
+        "table": "enti",
+        "name": "Codice_fiscale_ente"
+      }
+    ],
+    "join_pairs": [
+      {
+        "left": {
+          "table": "uo_sfe",
+          "name": "Codice_fiscale_ente"
+        },
+        "right": {
+          "table": "enti",
+          "name": "Codice_fiscale_ente"
+        }
+      }
+    ]
+  },
+  {
+    "rule_type": "Referential Integrity",
+    "rule": "Every uo.Codice_IPA must refer to an existing enti.Codice_IPA.",
+    "explanation": "Every record in the Unità_Organizzative table must reference a valid entity listed in the enti table via Codice_IPA, ensuring organizational data integrity.",
+    "columns": [
+      {
+        "table": "uo",
+        "name": "Codice_IPA"
+      },
+      {
+        "table": "enti",
+        "name": "Codice_IPA"
+      }
+    ],
+    "join_pairs": [
+      {
+        "left": {
+          "table": "uo",
+          "name": "Codice_IPA"
+        },
+        "right": {
+          "table": "enti",
+          "name": "Codice_IPA"
+        }
+      }
+    ]
+  },
+  {
+    "rule_type": "Referential Integrity",
+    "rule": "Every uo.Codice_fiscale_ente must refer to an existing enti.Codice_fiscale_ente.",
+    "explanation": "Every record in the Unità_Organizzative table must reference a valid entity listed in the enti table via Codice_fiscale_ente, ensuring correct fiscal entity relationships.",
+    "columns": [
+      {
+        "table": "uo",
+        "name": "Codice_fiscale_ente"
+      },
+      {
+        "table": "enti",
+        "name": "Codice_fiscale_ente"
+      }
+    ],
+    "join_pairs": [
+      {
+        "left": {
+          "table": "uo",
+          "name": "Codice_fiscale_ente"
+        },
+        "right": {
+          "table": "enti",
+          "name": "Codice_fiscale_ente"
+        }
+      }
+    ]
+  },
+  {
+  "rule_type": "Referential Integrity",
+  "rule": "Every uo_sfe.Codice_uni_uo must refer to an existing uo.Codice_uni_uo.",
+  "explanation": "Every record in the Electronic Invoice Units table must reference a valid organizational unit listed in the Unità Organizzative table via Codice_uni_uo, ensuring only legitimate units can receive electronic invoices.",
+  "columns": [
+    {
+      "table": "uo_sfe",
+      "name": "Codice_uni_uo"
+    },
+    {
+      "table": "uo",
+      "name": "Codice_uni_uo"
+    }
+  ],
+  "join_pairs": [
+    {
+      "left": {
+        "table": "uo_sfe",
+        "name": "Codice_uni_uo"
+      },
+      "right": {
+        "table": "uo",
+        "name": "Codice_uni_uo"
+      }
+    }
+  ]
+}
+
+]

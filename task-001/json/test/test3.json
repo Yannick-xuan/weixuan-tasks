@@ -1,0 +1,29 @@
+[
+  {
+        "rule_type": "Conditional Reference Existence",
+        "rule": "IF uo.Descrizione_uo contains 'transizione al digitale' THEN uo.Codice_IPA must exist in enti.Codice_IPA",
+        "explanation": "When an organizational unit is designated as a digital transition office, it must reference an existing entity in the Entities table via IPA code. This ensures digital transition units are officially registered entities.",
+        "columns": [
+            {
+                "table": "uo",
+                "name": "Descrizione_uo"
+            },
+            {
+                "table": "enti",
+                "name": "Codice_IPA"
+            }
+        ],
+        "join_pairs": [
+            {
+                "left": {
+                    "table": "uo",
+                    "name": "Codice_IPA"
+                },
+                "right": {
+                    "table": "enti",
+                    "name": "Codice_IPA"
+                }
+            }
+        ]
+    }
+]

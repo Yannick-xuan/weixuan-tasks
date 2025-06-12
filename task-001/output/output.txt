@@ -1,0 +1,546 @@
+Loading datasets from: .
+
+Available Excel files:
+  - enti.xlsx
+  - unita-organizzative.xlsx
+  - unita-organizzative-che-ricevono-fatture-elettroniche.xlsx
+  - responsabili-della-transizione-al-digitale.xlsx
+
+Loading enti.xlsx as enti...
+  Successfully loaded 23655 rows
+
+Loading unita-organizzative.xlsx as uo...
+  Successfully loaded 118274 rows
+
+Loading unita-organizzative-che-ricevono-fatture-elettroniche.xlsx as uo_sfe...
+  Successfully loaded 55432 rows
+
+Loading responsabili-della-transizione-al-digitale.xlsx as responsabili...
+  Successfully loaded 20518 rows
+
+Loaded tables:
+  - enti
+  - uo
+  - uo_sfe
+  - responsabili
+
+Dataset Summary:
+--------------------------------------------------
+enti: 23655 rows, 34 columns
+uo: 118274 rows, 26 columns
+uo_sfe: 55432 rows, 23 columns
+responsabili: 20518 rows, 24 columns
+
+Loading rules from: json
+Error loading rules from conditional_reference_existence_golden.json: Expecting value: line 245 column 5 (char 8829)
+
+Processing 59 rules...
+
+======================================================================
+VALIDATION RESULTS
+======================================================================
+
+Rule 1/59: Every responsabili.Codice_IPA must refer to an existing enti.Codice_IPA.
+----------------------------------------------------------------------
+Total rows checked: 20518
+Valid rows: 20518
+Violating rows: 0
+Violation rate: 0.00%
+Saved 20518 valid rows to validation_results/Referential_Integrity_valid.csv
+
+Rule 2/59: IF responsabili.Codice_uni_uo = uo.Codice_uni_uo THEN uo.Descrizione_uo contains 'transizione al digitale'
+----------------------------------------------------------------------
+Total rows checked: 20518
+Valid rows: 20518
+Violating rows: 0
+Violation rate: 0.00%
+Saved 20518 valid rows to validation_results/Conditional_Reference_with_Label_Restriction_valid.csv
+
+Rule 3/59: IF responsabili.Codice_IPA = enti.Codice_IPA THEN enti.Tipo_Mail1 = 'Pec'
+----------------------------------------------------------------------
+Total rows checked: 20518
+Valid rows: 20508
+Violating rows: 10
+Violation rate: 0.05%
+Saved 20508 valid rows to validation_results/Conditional_Reference_with_Label_Restriction_valid.csv
+Saved 10 violating rows to validation_results/Conditional_Reference_with_Label_Restriction_violating.csv
+
+Rule 4/59: IF responsabili.Codice_fiscale_ente = enti.Codice_fiscale_ente THEN enti.Tipo_Mail1 = 'Pec'
+----------------------------------------------------------------------
+Total rows checked: 20518
+Valid rows: 20508
+Violating rows: 10
+Violation rate: 0.05%
+Saved 20508 valid rows to validation_results/Conditional_Reference_with_Label_Restriction_valid.csv
+Saved 10 violating rows to validation_results/Conditional_Reference_with_Label_Restriction_violating.csv
+
+Rule 5/59: IF uo_sfe.Codice_IPA = enti.Codice_IPA THEN enti.Tipo_Mail1 = 'Pec'
+----------------------------------------------------------------------
+Total rows checked: 55432
+Valid rows: 55426
+Violating rows: 6
+Violation rate: 0.01%
+Saved 55426 valid rows to validation_results/Conditional_Reference_with_Label_Restriction_valid.csv
+Saved 6 violating rows to validation_results/Conditional_Reference_with_Label_Restriction_violating.csv
+
+Rule 6/59: IF uo_sfe.Codice_fiscale_ente = enti.Codice_fiscale_ente THEN enti.Tipo_Mail1 = 'Pec'
+----------------------------------------------------------------------
+Total rows checked: 55432
+Valid rows: 55426
+Violating rows: 6
+Violation rate: 0.01%
+Saved 55426 valid rows to validation_results/Conditional_Reference_with_Label_Restriction_valid.csv
+Saved 6 violating rows to validation_results/Conditional_Reference_with_Label_Restriction_violating.csv
+
+Rule 7/59: IF uo.Codice_IPA = enti.Codice_IPA THEN enti.Tipo_Mail1 = 'Pec'
+----------------------------------------------------------------------
+Total rows checked: 118274
+Valid rows: 118163
+Violating rows: 111
+Violation rate: 0.09%
+Saved 118163 valid rows to validation_results/Conditional_Reference_with_Label_Restriction_valid.csv
+Saved 111 violating rows to validation_results/Conditional_Reference_with_Label_Restriction_violating.csv
+
+Rule 8/59: IF uo.Codice_fiscale_ente = enti.Codice_fiscale_ente THEN enti.Tipo_Mail1 = 'Pec'
+----------------------------------------------------------------------
+Total rows checked: 118274
+Valid rows: 118163
+Violating rows: 111
+Violation rate: 0.09%
+Saved 118163 valid rows to validation_results/Conditional_Reference_with_Label_Restriction_valid.csv
+Saved 111 violating rows to validation_results/Conditional_Reference_with_Label_Restriction_violating.csv
+
+Rule 9/59: Every responsabili.Codice_IPA must refer to an existing enti.Codice_IPA.
+----------------------------------------------------------------------
+Total rows checked: 20518
+Valid rows: 20518
+Violating rows: 0
+Violation rate: 0.00%
+Saved 20518 valid rows to validation_results/Referential_Integrity_valid.csv
+
+Rule 10/59: Every uo.Codice_uni_uo_padre must refer to an existing uo.Codice_uni_uo.
+----------------------------------------------------------------------
+Total rows checked: 118274
+Valid rows: 118274
+Violating rows: 0
+Violation rate: 0.00%
+Saved 118274 valid rows to validation_results/Referential_Integrity_valid.csv
+
+Rule 11/59: Every responsabili.Codice_fiscale_ente must refer to an existing enti.Codice_fiscale_ente.
+----------------------------------------------------------------------
+Total rows checked: 20518
+Valid rows: 20518
+Violating rows: 0
+Violation rate: 0.00%
+Saved 20518 valid rows to validation_results/Referential_Integrity_valid.csv
+
+Rule 12/59: Every responsabili.Codice_uni_uo must refer to an existing uo.Codice_uni_uo.
+----------------------------------------------------------------------
+Total rows checked: 20518
+Valid rows: 20518
+Violating rows: 0
+Violation rate: 0.00%
+Saved 20518 valid rows to validation_results/Referential_Integrity_valid.csv
+
+Rule 13/59: Every uo_sfe.Codice_IPA must refer to an existing enti.Codice_IPA.
+----------------------------------------------------------------------
+Total rows checked: 55432
+Valid rows: 55432
+Violating rows: 0
+Violation rate: 0.00%
+Saved 55432 valid rows to validation_results/Referential_Integrity_valid.csv
+
+Rule 14/59: Every uo_sfe.Codice_fiscale_ente must refer to an existing enti.Codice_fiscale_ente.
+----------------------------------------------------------------------
+Total rows checked: 55432
+Valid rows: 55432
+Violating rows: 0
+Violation rate: 0.00%
+Saved 55432 valid rows to validation_results/Referential_Integrity_valid.csv
+
+Rule 15/59: Every uo.Codice_IPA must refer to an existing enti.Codice_IPA.
+----------------------------------------------------------------------
+Total rows checked: 118274
+Valid rows: 118274
+Violating rows: 0
+Violation rate: 0.00%
+Saved 118274 valid rows to validation_results/Referential_Integrity_valid.csv
+
+Rule 16/59: Every uo.Codice_fiscale_ente must refer to an existing enti.Codice_fiscale_ente.
+----------------------------------------------------------------------
+Total rows checked: 118274
+Valid rows: 118274
+Violating rows: 0
+Violation rate: 0.00%
+Saved 118274 valid rows to validation_results/Referential_Integrity_valid.csv
+
+Rule 17/59: Every uo_sfe.Codice_uni_uo must refer to an existing uo.Codice_uni_uo.
+----------------------------------------------------------------------
+Total rows checked: 55432
+Valid rows: 55432
+Violating rows: 0
+Violation rate: 0.00%
+Saved 55432 valid rows to validation_results/Referential_Integrity_valid.csv
+
+Rule 18/59: IF uo.Codice_uni_uo = responsabili.Codice_uni_uo THEN uo.Descrizione_uo = responsabili.Descrizione_uo
+----------------------------------------------------------------------
+Total rows checked: 118274
+Valid rows: 118274
+Violating rows: 0
+Violation rate: 0.00%
+Saved 118274 valid rows to validation_results/Cross-Table_Consistency_valid.csv
+
+Rule 19/59: IF uo.Codice_uni_uo = responsabili.Codice_uni_uo THEN uo.Codice_IPA = responsabili.Codice_IPA
+----------------------------------------------------------------------
+Total rows checked: 118274
+Valid rows: 118274
+Violating rows: 0
+Violation rate: 0.00%
+Saved 118274 valid rows to validation_results/Cross-Table_Consistency_valid.csv
+
+Rule 20/59: IF uo.Codice_uni_uo = responsabili.Codice_uni_uo THEN uo.Denominazione_ente = responsabili.Denominazione_ente
+----------------------------------------------------------------------
+Total rows checked: 118274
+Valid rows: 118274
+Violating rows: 0
+Violation rate: 0.00%
+Saved 118274 valid rows to validation_results/Cross-Table_Consistency_valid.csv
+
+Rule 21/59: IF uo.Codice_uni_uo = responsabili.Codice_uni_uo THEN uo.Codice_fiscale_ente = responsabili.Codice_fiscale_ente
+----------------------------------------------------------------------
+Total rows checked: 118274
+Valid rows: 118274
+Violating rows: 0
+Violation rate: 0.00%
+Saved 118274 valid rows to validation_results/Cross-Table_Consistency_valid.csv
+
+Rule 22/59: IF uo.Codice_uni_uo = responsabili.Codice_uni_uo THEN uo.Nome_responsabile = responsabili.Nome_responsabile
+----------------------------------------------------------------------
+Total rows checked: 118274
+Valid rows: 118274
+Violating rows: 0
+Violation rate: 0.00%
+Saved 118274 valid rows to validation_results/Cross-Table_Consistency_valid.csv
+
+Rule 23/59: IF uo.Codice_uni_uo = responsabili.Codice_uni_uo THEN uo.Cognome_responsabile = responsabili.Cognome_responsabile
+----------------------------------------------------------------------
+Total rows checked: 118274
+Valid rows: 118274
+Violating rows: 0
+Violation rate: 0.00%
+Saved 118274 valid rows to validation_results/Cross-Table_Consistency_valid.csv
+
+Rule 24/59: IF uo.Codice_uni_uo = responsabili.Codice_uni_uo THEN uo.Mail_responsabile = responsabili.Mail_responsabile
+----------------------------------------------------------------------
+Total rows checked: 118274
+Valid rows: 118274
+Violating rows: 0
+Violation rate: 0.00%
+Saved 118274 valid rows to validation_results/Cross-Table_Consistency_valid.csv
+
+Rule 25/59: IF uo.Codice_uni_uo = responsabili.Codice_uni_uo THEN uo.Telefono_responsabile = responsabili.Telefono_responsabile
+----------------------------------------------------------------------
+Total rows checked: 118274
+Valid rows: 101588
+Violating rows: 16686
+Violation rate: 14.11%
+Saved 101588 valid rows to validation_results/Cross-Table_Consistency_valid.csv
+Saved 16686 violating rows to validation_results/Cross-Table_Consistency_violating.csv
+
+Rule 26/59: IF uo.Codice_uni_uo = responsabili.Codice_uni_uo THEN uo.Data_istituzione = responsabili.Data_istituzione
+----------------------------------------------------------------------
+Total rows checked: 118274
+Valid rows: 118274
+Violating rows: 0
+Violation rate: 0.00%
+Saved 118274 valid rows to validation_results/Cross-Table_Consistency_valid.csv
+
+Rule 27/59: IF uo.Codice_uni_uo = responsabili.Codice_uni_uo THEN uo.Codice_comune_ISTAT = responsabili.Codice_comune_ISTAT
+----------------------------------------------------------------------
+Total rows checked: 118274
+Valid rows: 118274
+Violating rows: 0
+Violation rate: 0.00%
+Saved 118274 valid rows to validation_results/Cross-Table_Consistency_valid.csv
+
+Rule 28/59: IF uo.Codice_uni_uo = responsabili.Codice_uni_uo THEN uo.Codice_catastale_comune = responsabili.Codice_catastale_comune
+----------------------------------------------------------------------
+Total rows checked: 118274
+Valid rows: 118274
+Violating rows: 0
+Violation rate: 0.00%
+Saved 118274 valid rows to validation_results/Cross-Table_Consistency_valid.csv
+
+Rule 29/59: IF uo.Codice_uni_uo = responsabili.Codice_uni_uo THEN uo.CAP = responsabili.CAP
+----------------------------------------------------------------------
+Total rows checked: 118274
+Valid rows: 118274
+Violating rows: 0
+Violation rate: 0.00%
+Saved 118274 valid rows to validation_results/Cross-Table_Consistency_valid.csv
+
+Rule 30/59: IF uo.Codice_uni_uo = responsabili.Codice_uni_uo THEN uo.Indirizzo = responsabili.Indirizzo
+----------------------------------------------------------------------
+Total rows checked: 118274
+Valid rows: 118274
+Violating rows: 0
+Violation rate: 0.00%
+Saved 118274 valid rows to validation_results/Cross-Table_Consistency_valid.csv
+
+Rule 31/59: IF uo.Codice_uni_uo = responsabili.Codice_uni_uo THEN uo.Telefono = responsabili.Telefono
+----------------------------------------------------------------------
+Total rows checked: 118274
+Valid rows: 118274
+Violating rows: 0
+Violation rate: 0.00%
+Saved 118274 valid rows to validation_results/Cross-Table_Consistency_valid.csv
+
+Rule 32/59: IF uo.Codice_uni_uo = responsabili.Codice_uni_uo THEN uo.Fax = responsabili.Fax
+----------------------------------------------------------------------
+Total rows checked: 118274
+Valid rows: 118274
+Violating rows: 0
+Violation rate: 0.00%
+Saved 118274 valid rows to validation_results/Cross-Table_Consistency_valid.csv
+
+Rule 33/59: IF uo.Codice_uni_uo = responsabili.Codice_uni_uo THEN uo.Mail1 = responsabili.Mail1
+----------------------------------------------------------------------
+Total rows checked: 118274
+Valid rows: 118274
+Violating rows: 0
+Violation rate: 0.00%
+Saved 118274 valid rows to validation_results/Cross-Table_Consistency_valid.csv
+
+Rule 34/59: IF uo.Codice_uni_uo = responsabili.Codice_uni_uo THEN uo.Tipo_Mail1 = responsabili.Tipo_Mail1
+----------------------------------------------------------------------
+Total rows checked: 118274
+Valid rows: 118274
+Violating rows: 0
+Violation rate: 0.00%
+Saved 118274 valid rows to validation_results/Cross-Table_Consistency_valid.csv
+
+Rule 35/59: IF uo.Codice_uni_uo = responsabili.Codice_uni_uo THEN uo.Mail2 = responsabili.Mail2
+----------------------------------------------------------------------
+Total rows checked: 118274
+Valid rows: 118274
+Violating rows: 0
+Violation rate: 0.00%
+Saved 118274 valid rows to validation_results/Cross-Table_Consistency_valid.csv
+
+Rule 36/59: IF uo.Codice_uni_uo = responsabili.Codice_uni_uo THEN uo.Tipo_Mail2 = responsabili.Tipo_Mail2
+----------------------------------------------------------------------
+Total rows checked: 118274
+Valid rows: 118274
+Violating rows: 0
+Violation rate: 0.00%
+Saved 118274 valid rows to validation_results/Cross-Table_Consistency_valid.csv
+
+Rule 37/59: IF uo.Codice_uni_uo = responsabili.Codice_uni_uo THEN uo.Mail3 = responsabili.Mail3
+----------------------------------------------------------------------
+Total rows checked: 118274
+Valid rows: 118274
+Violating rows: 0
+Violation rate: 0.00%
+Saved 118274 valid rows to validation_results/Cross-Table_Consistency_valid.csv
+
+Rule 38/59: IF uo.Codice_uni_uo = responsabili.Codice_uni_uo THEN uo.Tipo_Mail3 = responsabili.Tipo_Mail3
+----------------------------------------------------------------------
+Total rows checked: 118274
+Valid rows: 118274
+Violating rows: 0
+Violation rate: 0.00%
+Saved 118274 valid rows to validation_results/Cross-Table_Consistency_valid.csv
+
+Rule 39/59: IF uo.Codice_uni_uo = responsabili.Codice_uni_uo THEN uo.Data_aggiornamento = responsabili.Data_aggiornamento
+----------------------------------------------------------------------
+Total rows checked: 118274
+Valid rows: 118274
+Violating rows: 0
+Violation rate: 0.00%
+Saved 118274 valid rows to validation_results/Cross-Table_Consistency_valid.csv
+
+Rule 40/59: IF uo.Codice_uni_uo = uo_sfe.Codice_uni_uo THEN uo.Descrizione_uo = uo_sfe.Descrizione_uo
+----------------------------------------------------------------------
+Total rows checked: 118274
+Valid rows: 118274
+Violating rows: 0
+Violation rate: 0.00%
+Saved 118274 valid rows to validation_results/Cross-Table_Consistency_valid.csv
+
+Rule 41/59: IF uo.Codice_uni_uo = uo_sfe.Codice_uni_uo THEN uo.Codice_IPA = uo_sfe.Codice_IPA
+----------------------------------------------------------------------
+Total rows checked: 118274
+Valid rows: 118274
+Violating rows: 0
+Violation rate: 0.00%
+Saved 118274 valid rows to validation_results/Cross-Table_Consistency_valid.csv
+
+Rule 42/59: IF uo.Codice_uni_uo = uo_sfe.Codice_uni_uo THEN uo.Denominazione_ente = uo_sfe.Denominazione_ente
+----------------------------------------------------------------------
+Total rows checked: 118274
+Valid rows: 118274
+Violating rows: 0
+Violation rate: 0.00%
+Saved 118274 valid rows to validation_results/Cross-Table_Consistency_valid.csv
+
+Rule 43/59: IF uo.Codice_uni_uo = uo_sfe.Codice_uni_uo THEN uo.Codice_fiscale_ente = uo_sfe.Codice_fiscale_ente
+----------------------------------------------------------------------
+Total rows checked: 118274
+Valid rows: 118274
+Violating rows: 0
+Violation rate: 0.00%
+Saved 118274 valid rows to validation_results/Cross-Table_Consistency_valid.csv
+
+Rule 44/59: IF uo.Codice_uni_uo = uo_sfe.Codice_uni_uo THEN uo.Data_istituzione = uo_sfe.Data_istituzione
+----------------------------------------------------------------------
+Total rows checked: 118274
+Valid rows: 118274
+Violating rows: 0
+Violation rate: 0.00%
+Saved 118274 valid rows to validation_results/Cross-Table_Consistency_valid.csv
+
+Rule 45/59: IF uo.Codice_uni_uo = uo_sfe.Codice_uni_uo THEN uo.Mail_responsabile = uo_sfe.Mail_responsabile
+----------------------------------------------------------------------
+Total rows checked: 118274
+Valid rows: 118274
+Violating rows: 0
+Violation rate: 0.00%
+Saved 118274 valid rows to validation_results/Cross-Table_Consistency_valid.csv
+
+Rule 46/59: IF uo.Codice_uni_uo = uo_sfe.Codice_uni_uo THEN uo.Telefono_responsabile = uo_sfe.Telefono_responsabile
+----------------------------------------------------------------------
+Total rows checked: 118274
+Valid rows: 118274
+Violating rows: 0
+Violation rate: 0.00%
+Saved 118274 valid rows to validation_results/Cross-Table_Consistency_valid.csv
+
+Rule 47/59: IF uo.Codice_uni_uo = uo_sfe.Codice_uni_uo THEN uo.Codice_comune_ISTAT = uo_sfe.Codice_comune_ISTAT
+----------------------------------------------------------------------
+Total rows checked: 118274
+Valid rows: 118273
+Violating rows: 1
+Violation rate: 0.00%
+Saved 118273 valid rows to validation_results/Cross-Table_Consistency_valid.csv
+Saved 1 violating rows to validation_results/Cross-Table_Consistency_violating.csv
+
+Rule 48/59: IF uo.Codice_uni_uo = uo_sfe.Codice_uni_uo THEN uo.Codice_catastale_comune = uo_sfe.Codice_catastale_comune
+----------------------------------------------------------------------
+Total rows checked: 118274
+Valid rows: 118273
+Violating rows: 1
+Violation rate: 0.00%
+Saved 118273 valid rows to validation_results/Cross-Table_Consistency_valid.csv
+Saved 1 violating rows to validation_results/Cross-Table_Consistency_violating.csv
+
+Rule 49/59: IF uo.Codice_uni_uo = uo_sfe.Codice_uni_uo THEN uo.CAP = uo_sfe.CAP
+----------------------------------------------------------------------
+Total rows checked: 118274
+Valid rows: 118273
+Violating rows: 1
+Violation rate: 0.00%
+Saved 118273 valid rows to validation_results/Cross-Table_Consistency_valid.csv
+Saved 1 violating rows to validation_results/Cross-Table_Consistency_violating.csv
+
+Rule 50/59: IF uo.Codice_uni_uo = uo_sfe.Codice_uni_uo THEN uo.Indirizzo = uo_sfe.Indirizzo
+----------------------------------------------------------------------
+Total rows checked: 118274
+Valid rows: 118273
+Violating rows: 1
+Violation rate: 0.00%
+Saved 118273 valid rows to validation_results/Cross-Table_Consistency_valid.csv
+Saved 1 violating rows to validation_results/Cross-Table_Consistency_violating.csv
+
+Rule 51/59: IF uo.Codice_uni_uo = uo_sfe.Codice_uni_uo THEN uo.Telefono = uo_sfe.Telefono
+----------------------------------------------------------------------
+Total rows checked: 118274
+Valid rows: 89829
+Violating rows: 28445
+Violation rate: 24.05%
+Saved 89829 valid rows to validation_results/Cross-Table_Consistency_valid.csv
+Saved 28445 violating rows to validation_results/Cross-Table_Consistency_violating.csv
+
+Rule 52/59: IF uo.Codice_uni_uo = uo_sfe.Codice_uni_uo THEN uo.Fax = uo_sfe.Fax
+----------------------------------------------------------------------
+Total rows checked: 118274
+Valid rows: 118274
+Violating rows: 0
+Violation rate: 0.00%
+Saved 118274 valid rows to validation_results/Cross-Table_Consistency_valid.csv
+
+Rule 53/59: IF uo.Codice_uni_uo = uo_sfe.Codice_uni_uo THEN uo.Mail1 = uo_sfe.Mail1
+----------------------------------------------------------------------
+Total rows checked: 118274
+Valid rows: 118274
+Violating rows: 0
+Violation rate: 0.00%
+Saved 118274 valid rows to validation_results/Cross-Table_Consistency_valid.csv
+
+Rule 54/59: IF uo.Codice_uni_uo = uo_sfe.Codice_uni_uo THEN uo.Tipo_Mail1 = uo_sfe.Tipo_Mail1
+----------------------------------------------------------------------
+Total rows checked: 118274
+Valid rows: 118274
+Violating rows: 0
+Violation rate: 0.00%
+Saved 118274 valid rows to validation_results/Cross-Table_Consistency_valid.csv
+
+Rule 55/59: IF uo.Codice_uni_uo = uo_sfe.Codice_uni_uo THEN uo.Mail2 = uo_sfe.Mail2
+----------------------------------------------------------------------
+Total rows checked: 118274
+Valid rows: 118273
+Violating rows: 1
+Violation rate: 0.00%
+Saved 118273 valid rows to validation_results/Cross-Table_Consistency_valid.csv
+Saved 1 violating rows to validation_results/Cross-Table_Consistency_violating.csv
+
+Rule 56/59: IF uo.Codice_uni_uo = uo_sfe.Codice_uni_uo THEN uo.Tipo_Mail2 = uo_sfe.Tipo_Mail2
+----------------------------------------------------------------------
+Total rows checked: 118274
+Valid rows: 118273
+Violating rows: 1
+Violation rate: 0.00%
+Saved 118273 valid rows to validation_results/Cross-Table_Consistency_valid.csv
+Saved 1 violating rows to validation_results/Cross-Table_Consistency_violating.csv
+
+Rule 57/59: IF uo.Codice_uni_uo = uo_sfe.Codice_uni_uo THEN uo.Mail3 = uo_sfe.Mail3
+----------------------------------------------------------------------
+Total rows checked: 118274
+Valid rows: 118274
+Violating rows: 0
+Violation rate: 0.00%
+Saved 118274 valid rows to validation_results/Cross-Table_Consistency_valid.csv
+
+Rule 58/59: IF uo.Codice_uni_uo = uo_sfe.Codice_uni_uo THEN uo.Tipo_Mail3 = uo_sfe.Tipo_Mail3
+----------------------------------------------------------------------
+Total rows checked: 118274
+Valid rows: 118274
+Violating rows: 0
+Violation rate: 0.00%
+Saved 118274 valid rows to validation_results/Cross-Table_Consistency_valid.csv
+
+Rule 59/59: IF uo.Codice_uni_uo = uo_sfe.Codice_uni_uo THEN uo.Data_aggiornamento = uo_sfe.Data_aggiornamento
+----------------------------------------------------------------------
+Total rows checked: 118274
+Valid rows: 107752
+Violating rows: 10522
+Violation rate: 8.90%
+Saved 107752 valid rows to validation_results/Cross-Table_Consistency_valid.csv
+Saved 10522 violating rows to validation_results/Cross-Table_Consistency_violating.csv
+
+======================================================================
+SUMMARY STATISTICS
+======================================================================
+Total rules validated: 59
+Total rows checked across all rules: 5979664
+Total violations found: 55913
+Average violation rate: 0.80%
+
+Rules with highest violation rates:
+  1. IF uo.Codice_uni_uo = uo_sfe.Codice_uni_uo THEN uo.Telefono ...
+     Violation rate: 24.05%
+  2. IF uo.Codice_uni_uo = responsabili.Codice_uni_uo THEN uo.Tel...
+     Violation rate: 14.11%
+  3. IF uo.Codice_uni_uo = uo_sfe.Codice_uni_uo THEN uo.Data_aggi...
+     Violation rate: 8.90%
+
+Process finished with exit code 0

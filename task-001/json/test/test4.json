@@ -1,0 +1,29 @@
+[
+  {
+        "rule_type": "Conditional Reference with Label Restriction",
+        "rule": "IF responsabili.Codice_uni_uo = uo.Codice_uni_uo THEN uo.Descrizione_uo contains 'transizione al digitale'",
+        "explanation": "When a Digital Transition Manager references an organizational unit, that unit in the Organizational Units table must contain 'digital transition' in its description. This ensures managers are always associated with dedicated digital transition offices, not unrelated units.",
+        "columns": [
+            {
+                "table": "responsabili",
+                "name": "Codice_uni_uo"
+            },
+            {
+                "table": "uo",
+                "name": "Descrizione_uo"
+            }
+        ],
+        "join_pairs": [
+            {
+                "left": {
+                    "table": "responsabili",
+                    "name": "Codice_uni_uo"
+                },
+                "right": {
+                    "table": "uo",
+                    "name": "Codice_uni_uo"
+                }
+            }
+        ]
+    }
+]

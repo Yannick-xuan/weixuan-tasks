@@ -1,8 +1,19 @@
-# Rule Validation System Documentation
+# Data Validation Rules System - Comprehensive Documentation
 
-## 1. Implementation Overview
+## Project Overview
 
-### 1.1 Rule Abstraction
+This project is a high-performance data validation rules system designed to validate referential integrity, cross-table consistency, and conditional references between multiple data tables. The system leverages pandas vectorized operations for performance optimization, provides command-line batch processing capabilities, and reduces code duplication through modular design.
+##### Output and Csv files
+[output.txt](output/output.txt) validate_rules.py output
+
+[test_output.txt](output/test_output.txt) --test.py output
+
+[validation_results](validation_results)
+
+
+## System Architecture
+
+### Rule Abstraction
 
 All rules inherit from the abstract base class `Rule`, which requires:
 
@@ -11,53 +22,172 @@ All rules inherit from the abstract base class `Rule`, which requires:
 - `get_violation_report(dataset)`: Return detailed statistics
 - `save_validation_results(dataset, output_dir)`: Save details to CSV
 
-### 1.2 Rule Types
+### Rule Types
 
 - **rule1.py**: Referential Integrity
 - **rule2.py**: Cross-Table Consistency
-- **rule3.py**: Conditional Reference Existence
-- **rule4.py**: Conditional Reference with Label Restriction
+- **rule3.py**: Conditional Reference Existence 
+- **rule4.py**: Conditional Reference with Label Restriction 
 
-### 1.3 General Export Logic
+### Module Structure
+```
+common.py          # Shared infrastructure
+├── Rule (ABC)     # Abstract base class
+├── RuleFactory    # Factory class for rule instantiation
+├── DataLoader     # Data loader for Excel files
+└── RuleLoader     # Rule configuration loader
 
-- Automatically detects the "left table" and exports original data + `validation_status`
-- Standardized file naming for batch processing and traceability
-- All outputs are saved in the `validation_results` directory
+rule1.py          # Referential integrity rule
+rule2.py          # Cross-table consistency rule  
+rule3.py          # Conditional reference existence rule
+rule4.py          # Conditional reference with label restriction
+cli.py            # Command-line interface for batch processing
+```
 
----
+## Completed Tasks and Implementation Details
 
-## 2. Input Format Specification
+### 1. Performance Optimization - Using Pandas Vectorized Operations
 
-### 2.1 Dataset
+#### Original Implementation Issues
 
-- Type: `Dict[str, pd.DataFrame]`
-- Structure: Keys are table names, values are DataFrames
-- Example:
+The original code used row-by-row iteration for data validation, resulting in poor performance on large datasets.
+
+#### Optimized Implementation
+
+All rule validation logic has been rewritten using vectorized operations:
+
+**ReferentialIntegrityRule Optimization Example:**
 
 ```python
+# Using vectorized operations instead of loops
+# 1. Use set for fast lookups
+valid_references = set(right_df[right_column].dropna().unique())
+
+# 2. Use pandas isin() method for batch checking
+valid_ref_mask = left_df[left_column].isin(valid_references)
+
+# 3. Use boolean masks for conditional filtering
+valid_mask = null_mask | (non_null_mask & valid_ref_mask)
+```
+
+**CrossTableConsistencyRule Optimization Example:**
+
+```python
+# Use pandas merge for efficient joins
+merged_df = pd.merge(
+    left_df,
+    right_df,
+    left_on=left_join_col,
+    right_on=right_join_col,
+    suffixes=('_left', '_right'),
+    how='inner'
+)
+
+# Use vectorized comparison
+merged_df['is_consistent'] = (
+    (merged_df[left_check_col_merged].isna() & merged_df[right_check_col_merged].isna()) |
+    (merged_df[left_check_col_merged] == merged_df[right_check_col_merged])
+)
+```
+
+**ConditionalReferenceExistence Optimization Example:**
+
+```python
+# Use string vectorized operations
+condition_values = cond_df[condition_col].astype(str).str.lower()
+if operator == 'contains':
+    condition_met_mask = condition_values.str.contains(search_text, na=False)
+else:
+    condition_met_mask = condition_values == search_text
+```
+
+### 
+All rule validation logic has been rewritten using vectorized operations, eliminating row-by-row loops:
+
+**Key Optimization Techniques:**
+- **Set-based lookups**: Using Python sets for O(1) membership checking
+- **Boolean masking**: Leveraging pandas boolean indexing for efficient filtering
+- **Vectorized string operations**: Using pandas string methods for text matching
+- **Efficient joins**: Using pandas merge for cross-table operations
+
+
+### 2. Code Deduplication - Modular Design
+
+All shared code has been consolidated into `common.py`:
+
+- **Rule Base Class**: Provides common interface and shared methods
+- **RuleFactory**: Implements factory pattern for dynamic rule instantiation
+- **DataLoader**: Unified Excel file loading with automatic table name mapping
+- **RuleLoader**: JSON configuration file loading and parsing
+
+### 3. Batch Processing & CLI
+
+Complete command-line interface with extensive features:
+
+```bash
+python cli.py --data-dir ./data --json-dir ./json --output-dir ./results --rule-type all
+```
+
+**Arguments:**
+- `--data-dir`: Directory containing Excel data files (default: current directory)
+- `--json-dir`: Directory containing JSON rule configurations (default: json)
+- `--output-dir`: Directory for validation results output (default: validation_results)
+- `--rule-type`: Filter rules by type (all/referential/consistency/conditional/label-restriction)
+
+**Features:**
+- Automatic discovery and loading of all data files
+- Batch execution of multiple rules
+- Progress tracking and detailed logging
+- Summary statistics and violation rankings
+
+### 4. Testing Strategy
+
+Test one of the json data of each rule type and the test result is correct
+
+```python
+# Example test structure
+ def test_rule_1_referential_integrity(self):
+        """
+        Test Referential Integrity rule.
+
+        Rule: Every responsabili.Codice_IPA must refer to an existing enti.Codice_IPA.
+
+        Expected results based on test data:
+        - Total rows: 20,518
+        - Valid rows: 20,518
+        - Violating rows: 0
+        - Violation rate: 0.00%
+        """
+        self._run_rule_test(
+            rule_config_file='json/test/test1.json',
+            expected_total=20518,
+            expected_valid=20518,
+            expected_violating=0,
+            expected_violation_rate=0.00,
+            rule_display_name="Rule 1/4 (Referential Integrity)"
+        )
+```
+
+## Input/Output Specifications
+
+### Input Format
+
+#### Dataset Structure
+```python
 dataset = {
-    'uo': pd.DataFrame(...),
-    'enti': pd.DataFrame(...),
-    'responsabili': pd.DataFrame(...)
+    'uo': pd.DataFrame(...),              # Unità organizzative
+    'enti': pd.DataFrame(...),            # Enti
+    'responsabili': pd.DataFrame(...),    # Responsabili
+    'uo_sfe': pd.DataFrame(...)           # UO che ricevono fatture
 }
 ```
 
-### 2.2 Rule Instance
-
-- Type: `Dict[str, Any]`
-- Main fields:
-    - `rule_type`: Rule type (e.g., "Referential Integrity")
-    - `rule`: Rule description (in natural language or pseudo-code)
-    - `explanation`: Rule explanation
-    - `columns`: Involved tables and columns
-    - `join_pairs`: Join relationships (e.g., foreign key, primary key)
-- Example (Referential Integrity):
-
-```python
+#### Rule Configuration Format
+```json
 {
     "rule_type": "Referential Integrity",
-    "rule": "Every responsabili.Codice_IPA must refer to an existing enti.Codice_IPA.",
-    "explanation": "...",
+    "rule": "Every responsabili.Codice_IPA must refer to an existing enti.Codice_IPA",
+    "explanation": "Ensures all responsible persons are associated with valid entities",
     "columns": [
         {"table": "responsabili", "name": "Codice_IPA"},
         {"table": "enti", "name": "Codice_IPA"}
@@ -71,93 +201,100 @@ dataset = {
 }
 ```
 
----
+### Output Format
 
-## 3. Output File Specification(and print row list)
+Each validation produces CSV files in the `validation_results` directory:
 
-Each validation outputs the following files to the `validation_results` directory:
+- **Valid rows**: `{RuleType}_valid.csv` - Original data with `validation_status=valid`
+- **Violating rows**: `{RuleType}_violating.csv` - Original data with `validation_status=violating`
 
-- **Valid details**: All columns from the left table + `validation_status=valid`
-- **Violation details**: All columns from the left table + `validation_status=violation`
-- **Summary (optional)**: Rule statistics
 
-Example file names:
+Example output files:
 
-- `Referential_Integrity_valid.csv`
-- `Referential_Integrity_violating.csv`
-- `CrossTableConsis_valid_rule_1.csv`
-- `CrossTableConsis_violation_rule_1.csv`
-- `ConditionalReferenceWithLabelRestriction_valid_rule_1.csv`
-- `ConditionalReferenceWithLabelRestriction_violation_rule_1.csv`
+###  Csv output result : [validation_results](validation_results)
+![img_2.png](img_2.png)
+## Usage Guide
 
----
+### Quick Start
 
-If there is no such violation row file(now violation row print ), then there is no non-compliant data
 
-## 4. Usage Example
 
-### 4.1 Running a Single Rule Script
+1**Batch Processing**
+```bash
+# Process all rules
+python validate_rules.py 
 
-Assuming your Excel data files are in the current directory, simply run the corresponding script:
+# Process specific rule type
+python validate_rules.py --rule-type referential
 
-```Bash
-python rule1.py
-python rule2.py
-python rule3.py
-python rule4.py
+# Use custom directories
+python validate_rules.py --data-dir ./mydata --json-dir ./myrules --output-dir ./myresults
 ```
 
-### 4.2 Viewing Results
+### Data Preparation
 
-Check the `validation_results` directory for output CSV files.
-Each file contains the original data and a `validation_status` column for easy analysis.
+1. **Excel Data Files**
+Place Excel files in the data directory with expected names:
+- `enti.xlsx`
+- `unita-organizzative.xlsx`
+- `responsabili-della-transizione-al-digitale.xlsx`
+- `unita-organizzative-che-ricevono-fatture-elettroniche.xlsx`
 
----
+2. **Rule Configuration Files**
+Create JSON files in the json directory for each rule type.
 
-## 5. Main Assumptions & Edge Cases
+## Key Features and Design Decisions
 
-- All tables are loaded as pandas DataFrames, and column names match the rule configuration
-- Rule configuration must include necessary `join_pairs`, `columns`, etc.
-- Missing values (NaN) are treated as violations (can be adjusted as needed)
-- File name length is limited to avoid OS compatibility issues
-- Each run processes one rule at a time; batch processing can be added via loops
+### Error Handling
+- Graceful handling of missing tables/columns
+- Detailed error messages with context
+- Continuation of batch processing on individual rule failures
 
----
+### Performance Features
+- Vectorized operations throughout
+- Efficient memory usage with boolean masks
+- Set-based lookups for reference validation
 
-## 6. Code Structure Overview
+### Extensibility
+Easy to add new rule types:
 
-- `Rule`: Abstract base class defining the interface
-- `ReferentialIntegrityRule`, `CrossTableConsistencyRule`, etc.: Concrete rule implementations
-- `RuleFactory`: Rule factory for easy management and extension
-- `DataLoader`: Utility for loading datasets
-- `main()`: Script entry point for loading data, running validation, and exporting results
+```python
+class MyNewRule(Rule):
+    def _validate_config(self):
+        # Validate configuration
+        pass
+    
+    def validate(self, dataset):
+        # Implement validation logic using vectorized operations
+        violating_mask = dataset['table']['column'].isin(invalid_values)
+        valid_rows = dataset['table'].index[~violating_mask].tolist()
+        violating_rows = dataset['table'].index[violating_mask].tolist()
+        return violating_rows, valid_rows
 
----
+# Register the rule
+RuleFactory.register_rule_type('My New Rule', MyNewRule)
+```
 
-## 7. Example Function Documentation (from rule1.py)
+## Example Function Documentation
 
 ```python
 def validate(self, dataset: Dict[str, pd.DataFrame]) -> Tuple[List[int], List[int]]:
     '''
-    Validate referential integrity rule.
+    Validate referential integrity rule using vectorized operations.
 
     Parameters:
         dataset: Dict[str, pd.DataFrame]
-            The dataset, with table names as keys and DataFrames as values
+            Dictionary mapping table names to DataFrames
 
     Returns:
         Tuple[List[int], List[int]]
             - violating_rows: Indices of rows violating the rule
             - valid_rows: Indices of rows satisfying the rule
 
-    Example usage:
-        rule = ReferentialIntegrityRule(rule_config)
-        violating_rows, valid_rows = rule.validate(dataset)
 
-    Assumptions:
-        - All tables and columns exist
-        - Missing values are treated as violations
     '''
 ```
 
----
+## Summary
+
+this data validation system provides a robust, high-performance solution for validating complex business rules across multiple data tables. 

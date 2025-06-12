@@ -1,0 +1,29 @@
+[
+{
+    "rule_type": "Referential Integrity",
+    "rule": "Every responsabili.Codice_IPA must refer to an existing enti.Codice_IPA.",
+    "explanation": "Every record in the responsabili_transizione_digitale table must reference a valid entity listed in the enti table via Codice_IPA, ensuring data integrity across these related tables.",
+    "columns": [
+      {
+        "table": "responsabili",
+        "name": "Codice_IPA"
+      },
+      {
+        "table": "enti",
+        "name": "Codice_IPA"
+      }
+    ],
+    "join_pairs": [
+      {
+        "left": {
+          "table": "responsabili",
+          "name": "Codice_IPA"
+        },
+        "right": {
+          "table": "enti",
+          "name": "Codice_IPA"
+        }
+      }
+    ]
+  }
+]

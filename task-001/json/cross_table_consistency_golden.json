@@ -1,0 +1,639 @@
+[
+  {
+    "rule_type": "Cross-Table Consistency",
+    "rule": "IF uo.Codice_uni_uo = responsabili.Codice_uni_uo THEN uo.Descrizione_uo = responsabili.Descrizione_uo",
+    "explanation": "When the same organizational unit is referenced in both tables, the unit description must be consistent.",
+    "columns": [
+      {"table": "uo", "name": "Descrizione_uo"},
+      {"table": "responsabili", "name": "Descrizione_uo"}
+    ],
+    "join_pairs": [
+      {
+        "left": {"table": "uo", "name": "Codice_uni_uo"},
+        "right": {"table": "responsabili", "name": "Codice_uni_uo"}
+      }
+    ]
+  },
+  {
+    "rule_type": "Cross-Table Consistency",
+    "rule": "IF uo.Codice_uni_uo = responsabili.Codice_uni_uo THEN uo.Codice_IPA = responsabili.Codice_IPA",
+    "explanation": "When the same organizational unit is referenced in both tables, the IPA code must be consistent.",
+    "columns": [
+      {"table": "uo", "name": "Codice_IPA"},
+      {"table": "responsabili", "name": "Codice_IPA"}
+    ],
+    "join_pairs": [
+      {
+        "left": {"table": "uo", "name": "Codice_uni_uo"},
+        "right": {"table": "responsabili", "name": "Codice_uni_uo"}
+      }
+    ]
+  },
+  {
+    "rule_type": "Cross-Table Consistency",
+    "rule": "IF uo.Codice_uni_uo = responsabili.Codice_uni_uo THEN uo.Denominazione_ente = responsabili.Denominazione_ente",
+    "explanation": "When the same organizational unit is referenced in both tables, the entity name must be consistent.",
+    "columns": [
+      {"table": "uo", "name": "Denominazione_ente"},
+      {"table": "responsabili", "name": "Denominazione_ente"}
+    ],
+    "join_pairs": [
+      {
+        "left": {"table": "uo", "name": "Codice_uni_uo"},
+        "right": {"table": "responsabili", "name": "Codice_uni_uo"}
+      }
+    ]
+  },
+  {
+    "rule_type": "Cross-Table Consistency",
+    "rule": "IF uo.Codice_uni_uo = responsabili.Codice_uni_uo THEN uo.Codice_fiscale_ente = responsabili.Codice_fiscale_ente",
+    "explanation": "When the same organizational unit is referenced in both tables, the entity fiscal code must be consistent.",
+    "columns": [
+      {"table": "uo", "name": "Codice_fiscale_ente"},
+      {"table": "responsabili", "name": "Codice_fiscale_ente"}
+    ],
+    "join_pairs": [
+      {
+        "left": {"table": "uo", "name": "Codice_uni_uo"},
+        "right": {"table": "responsabili", "name": "Codice_uni_uo"}
+      }
+    ]
+  },
+  {
+    "rule_type": "Cross-Table Consistency",
+    "rule": "IF uo.Codice_uni_uo = responsabili.Codice_uni_uo THEN uo.Nome_responsabile = responsabili.Nome_responsabile",
+    "explanation": "When the same organizational unit is referenced in both tables, the manager's first name must be consistent.",
+    "columns": [
+      {"table": "uo", "name": "Nome_responsabile"},
+      {"table": "responsabili", "name": "Nome_responsabile"}
+    ],
+    "join_pairs": [
+      {
+        "left": {"table": "uo", "name": "Codice_uni_uo"},
+        "right": {"table": "responsabili", "name": "Codice_uni_uo"}
+      }
+    ]
+  },
+  {
+    "rule_type": "Cross-Table Consistency",
+    "rule": "IF uo.Codice_uni_uo = responsabili.Codice_uni_uo THEN uo.Cognome_responsabile = responsabili.Cognome_responsabile",
+    "explanation": "When the same organizational unit is referenced in both tables, the manager's last name must be consistent.",
+    "columns": [
+      {"table": "uo", "name": "Cognome_responsabile"},
+      {"table": "responsabili", "name": "Cognome_responsabile"}
+    ],
+    "join_pairs": [
+      {
+        "left": {"table": "uo", "name": "Codice_uni_uo"},
+        "right": {"table": "responsabili", "name": "Codice_uni_uo"}
+      }
+    ]
+  },
+  {
+    "rule_type": "Cross-Table Consistency",
+    "rule": "IF uo.Codice_uni_uo = responsabili.Codice_uni_uo THEN uo.Mail_responsabile = responsabili.Mail_responsabile",
+    "explanation": "When the same organizational unit is referenced in both tables, the manager's email must be consistent.",
+    "columns": [
+      {"table": "uo", "name": "Mail_responsabile"},
+      {"table": "responsabili", "name": "Mail_responsabile"}
+    ],
+    "join_pairs": [
+      {
+        "left": {"table": "uo", "name": "Codice_uni_uo"},
+        "right": {"table": "responsabili", "name": "Codice_uni_uo"}
+      }
+    ]
+  },
+  {
+    "rule_type": "Cross-Table Consistency",
+    "rule": "IF uo.Codice_uni_uo = responsabili.Codice_uni_uo THEN uo.Telefono_responsabile = responsabili.Telefono_responsabile",
+    "explanation": "When the same organizational unit is referenced in both tables, the manager's phone number must be consistent.",
+    "columns": [
+      {"table": "uo", "name": "Telefono_responsabile"},
+      {"table": "responsabili", "name": "Telefono_responsabile"}
+    ],
+    "join_pairs": [
+      {
+        "left": {"table": "uo", "name": "Codice_uni_uo"},
+        "right": {"table": "responsabili", "name": "Codice_uni_uo"}
+      }
+    ]
+  },
+  {
+    "rule_type": "Cross-Table Consistency",
+    "rule": "IF uo.Codice_uni_uo = responsabili.Codice_uni_uo THEN uo.Data_istituzione = responsabili.Data_istituzione",
+    "explanation": "When the same organizational unit is referenced in both tables, the establishment date must be consistent.",
+    "columns": [
+      {"table": "uo", "name": "Data_istituzione"},
+      {"table": "responsabili", "name": "Data_istituzione"}
+    ],
+    "join_pairs": [
+      {
+        "left": {"table": "uo", "name": "Codice_uni_uo"},
+        "right": {"table": "responsabili", "name": "Codice_uni_uo"}
+      }
+    ]
+  },
+  {
+    "rule_type": "Cross-Table Consistency",
+    "rule": "IF uo.Codice_uni_uo = responsabili.Codice_uni_uo THEN uo.Codice_comune_ISTAT = responsabili.Codice_comune_ISTAT",
+    "explanation": "When the same organizational unit is referenced in both tables, the ISTAT municipality code must be consistent.",
+    "columns": [
+      {"table": "uo", "name": "Codice_comune_ISTAT"},
+      {"table": "responsabili", "name": "Codice_comune_ISTAT"}
+    ],
+    "join_pairs": [
+      {
+        "left": {"table": "uo", "name": "Codice_uni_uo"},
+        "right": {"table": "responsabili", "name": "Codice_uni_uo"}
+      }
+    ]
+  },
+  {
+    "rule_type": "Cross-Table Consistency",
+    "rule": "IF uo.Codice_uni_uo = responsabili.Codice_uni_uo THEN uo.Codice_catastale_comune = responsabili.Codice_catastale_comune",
+    "explanation": "When the same organizational unit is referenced in both tables, the cadastral municipality code must be consistent.",
+    "columns": [
+      {"table": "uo", "name": "Codice_catastale_comune"},
+      {"table": "responsabili", "name": "Codice_catastale_comune"}
+    ],
+    "join_pairs": [
+      {
+        "left": {"table": "uo", "name": "Codice_uni_uo"},
+        "right": {"table": "responsabili", "name": "Codice_uni_uo"}
+      }
+    ]
+  },
+  {
+    "rule_type": "Cross-Table Consistency",
+    "rule": "IF uo.Codice_uni_uo = responsabili.Codice_uni_uo THEN uo.CAP = responsabili.CAP",
+    "explanation": "When the same organizational unit is referenced in both tables, the postal code must be consistent.",
+    "columns": [
+      {"table": "uo", "name": "CAP"},
+      {"table": "responsabili", "name": "CAP"}
+    ],
+    "join_pairs": [
+      {
+        "left": {"table": "uo", "name": "Codice_uni_uo"},
+        "right": {"table": "responsabili", "name": "Codice_uni_uo"}
+      }
+    ]
+  },
+  {
+    "rule_type": "Cross-Table Consistency",
+    "rule": "IF uo.Codice_uni_uo = responsabili.Codice_uni_uo THEN uo.Indirizzo = responsabili.Indirizzo",
+    "explanation": "When the same organizational unit is referenced in both tables, the address must be consistent.",
+    "columns": [
+      {"table": "uo", "name": "Indirizzo"},
+      {"table": "responsabili", "name": "Indirizzo"}
+    ],
+    "join_pairs": [
+      {
+        "left": {"table": "uo", "name": "Codice_uni_uo"},
+        "right": {"table": "responsabili", "name": "Codice_uni_uo"}
+      }
+    ]
+  },
+  {
+    "rule_type": "Cross-Table Consistency",
+    "rule": "IF uo.Codice_uni_uo = responsabili.Codice_uni_uo THEN uo.Telefono = responsabili.Telefono",
+    "explanation": "When the same organizational unit is referenced in both tables, the phone number must be consistent.",
+    "columns": [
+      {"table": "uo", "name": "Telefono"},
+      {"table": "responsabili", "name": "Telefono"}
+    ],
+    "join_pairs": [
+      {
+        "left": {"table": "uo", "name": "Codice_uni_uo"},
+        "right": {"table": "responsabili", "name": "Codice_uni_uo"}
+      }
+    ]
+  },
+  {
+    "rule_type": "Cross-Table Consistency",
+    "rule": "IF uo.Codice_uni_uo = responsabili.Codice_uni_uo THEN uo.Fax = responsabili.Fax",
+    "explanation": "When the same organizational unit is referenced in both tables, the fax number must be consistent.",
+    "columns": [
+      {"table": "uo", "name": "Fax"},
+      {"table": "responsabili", "name": "Fax"}
+    ],
+    "join_pairs": [
+      {
+        "left": {"table": "uo", "name": "Codice_uni_uo"},
+        "right": {"table": "responsabili", "name": "Codice_uni_uo"}
+      }
+    ]
+  },
+  {
+    "rule_type": "Cross-Table Consistency",
+    "rule": "IF uo.Codice_uni_uo = responsabili.Codice_uni_uo THEN uo.Mail1 = responsabili.Mail1",
+    "explanation": "When the same organizational unit is referenced in both tables, the primary email must be consistent.",
+    "columns": [
+      {"table": "uo", "name": "Mail1"},
+      {"table": "responsabili", "name": "Mail1"}
+    ],
+    "join_pairs": [
+      {
+        "left": {"table": "uo", "name": "Codice_uni_uo"},
+        "right": {"table": "responsabili", "name": "Codice_uni_uo"}
+      }
+    ]
+  },
+  {
+    "rule_type": "Cross-Table Consistency",
+    "rule": "IF uo.Codice_uni_uo = responsabili.Codice_uni_uo THEN uo.Tipo_Mail1 = responsabili.Tipo_Mail1",
+    "explanation": "When the same organizational unit is referenced in both tables, the primary email type must be consistent.",
+    "columns": [
+      {"table": "uo", "name": "Tipo_Mail1"},
+      {"table": "responsabili", "name": "Tipo_Mail1"}
+    ],
+    "join_pairs": [
+      {
+        "left": {"table": "uo", "name": "Codice_uni_uo"},
+        "right": {"table": "responsabili", "name": "Codice_uni_uo"}
+      }
+    ]
+  },
+  {
+    "rule_type": "Cross-Table Consistency",
+    "rule": "IF uo.Codice_uni_uo = responsabili.Codice_uni_uo THEN uo.Mail2 = responsabili.Mail2",
+    "explanation": "When the same organizational unit is referenced in both tables, the secondary email must be consistent.",
+    "columns": [
+      {"table": "uo", "name": "Mail2"},
+      {"table": "responsabili", "name": "Mail2"}
+    ],
+    "join_pairs": [
+      {
+        "left": {"table": "uo", "name": "Codice_uni_uo"},
+        "right": {"table": "responsabili", "name": "Codice_uni_uo"}
+      }
+    ]
+  },
+  {
+    "rule_type": "Cross-Table Consistency",
+    "rule": "IF uo.Codice_uni_uo = responsabili.Codice_uni_uo THEN uo.Tipo_Mail2 = responsabili.Tipo_Mail2",
+    "explanation": "When the same organizational unit is referenced in both tables, the secondary email type must be consistent.",
+    "columns": [
+      {"table": "uo", "name": "Tipo_Mail2"},
+      {"table": "responsabili", "name": "Tipo_Mail2"}
+    ],
+    "join_pairs": [
+      {
+        "left": {"table": "uo", "name": "Codice_uni_uo"},
+        "right": {"table": "responsabili", "name": "Codice_uni_uo"}
+      }
+    ]
+  },
+  {
+    "rule_type": "Cross-Table Consistency",
+    "rule": "IF uo.Codice_uni_uo = responsabili.Codice_uni_uo THEN uo.Mail3 = responsabili.Mail3",
+    "explanation": "When the same organizational unit is referenced in both tables, the tertiary email must be consistent.",
+    "columns": [
+      {"table": "uo", "name": "Mail3"},
+      {"table": "responsabili", "name": "Mail3"}
+    ],
+    "join_pairs": [
+      {
+        "left": {"table": "uo", "name": "Codice_uni_uo"},
+        "right": {"table": "responsabili", "name": "Codice_uni_uo"}
+      }
+    ]
+  },
+  {
+    "rule_type": "Cross-Table Consistency",
+    "rule": "IF uo.Codice_uni_uo = responsabili.Codice_uni_uo THEN uo.Tipo_Mail3 = responsabili.Tipo_Mail3",
+    "explanation": "When the same organizational unit is referenced in both tables, the tertiary email type must be consistent.",
+    "columns": [
+      {"table": "uo", "name": "Tipo_Mail3"},
+      {"table": "responsabili", "name": "Tipo_Mail3"}
+    ],
+    "join_pairs": [
+      {
+        "left": {"table": "uo", "name": "Codice_uni_uo"},
+        "right": {"table": "responsabili", "name": "Codice_uni_uo"}
+      }
+    ]
+  },
+  {
+    "rule_type": "Cross-Table Consistency",
+    "rule": "IF uo.Codice_uni_uo = responsabili.Codice_uni_uo THEN uo.Data_aggiornamento = responsabili.Data_aggiornamento",
+    "explanation": "When the same organizational unit is referenced in both tables, the last update date must be consistent.",
+    "columns": [
+      {"table": "uo", "name": "Data_aggiornamento"},
+      {"table": "responsabili", "name": "Data_aggiornamento"}
+    ],
+    "join_pairs": [
+      {
+        "left": {"table": "uo", "name": "Codice_uni_uo"},
+        "right": {"table": "responsabili", "name": "Codice_uni_uo"}
+      }
+    ]
+  },
+  {
+    "rule_type": "Cross-Table Consistency",
+    "rule": "IF uo.Codice_uni_uo = uo_sfe.Codice_uni_uo THEN uo.Descrizione_uo = uo_sfe.Descrizione_uo",
+    "explanation": "When the same organizational unit is referenced in both Unità Organizzative and SFE tables, the unit description must be consistent.",
+    "columns": [
+      {"table": "uo", "name": "Descrizione_uo"},
+      {"table": "uo_sfe", "name": "Descrizione_uo"}
+    ],
+    "join_pairs": [
+      {
+        "left": {"table": "uo", "name": "Codice_uni_uo"},
+        "right": {"table": "uo_sfe", "name": "Codice_uni_uo"}
+      }
+    ]
+  },
+  {
+    "rule_type": "Cross-Table Consistency",
+    "rule": "IF uo.Codice_uni_uo = uo_sfe.Codice_uni_uo THEN uo.Codice_IPA = uo_sfe.Codice_IPA",
+    "explanation": "When the same organizational unit is referenced in both Unità Organizzative and SFE tables, the IPA code must be consistent.",
+    "columns": [
+      {"table": "uo", "name": "Codice_IPA"},
+      {"table": "uo_sfe", "name": "Codice_IPA"}
+    ],
+    "join_pairs": [
+      {
+        "left": {"table": "uo", "name": "Codice_uni_uo"},
+        "right": {"table": "uo_sfe", "name": "Codice_uni_uo"}
+      }
+    ]
+  },
+  {
+    "rule_type": "Cross-Table Consistency",
+    "rule": "IF uo.Codice_uni_uo = uo_sfe.Codice_uni_uo THEN uo.Denominazione_ente = uo_sfe.Denominazione_ente",
+    "explanation": "When the same organizational unit is referenced in both Unità Organizzative and SFE tables, the entity name must be consistent.",
+    "columns": [
+      {"table": "uo", "name": "Denominazione_ente"},
+      {"table": "uo_sfe", "name": "Denominazione_ente"}
+    ],
+    "join_pairs": [
+      {
+        "left": {"table": "uo", "name": "Codice_uni_uo"},
+        "right": {"table": "uo_sfe", "name": "Codice_uni_uo"}
+      }
+    ]
+  },
+  {
+    "rule_type": "Cross-Table Consistency",
+    "rule": "IF uo.Codice_uni_uo = uo_sfe.Codice_uni_uo THEN uo.Codice_fiscale_ente = uo_sfe.Codice_fiscale_ente",
+    "explanation": "When the same organizational unit is referenced in both Unità Organizzative and SFE tables, the entity fiscal code must be consistent.",
+    "columns": [
+      {"table": "uo", "name": "Codice_fiscale_ente"},
+      {"table": "uo_sfe", "name": "Codice_fiscale_ente"}
+    ],
+    "join_pairs": [
+      {
+        "left": {"table": "uo", "name": "Codice_uni_uo"},
+        "right": {"table": "uo_sfe", "name": "Codice_uni_uo"}
+      }
+    ]
+  },
+  {
+    "rule_type": "Cross-Table Consistency",
+    "rule": "IF uo.Codice_uni_uo = uo_sfe.Codice_uni_uo THEN uo.Data_istituzione = uo_sfe.Data_istituzione",
+    "explanation": "When the same organizational unit is referenced in both Unità Organizzative and SFE tables, the establishment date must be consistent.",
+    "columns": [
+      {"table": "uo", "name": "Data_istituzione"},
+      {"table": "uo_sfe", "name": "Data_istituzione"}
+    ],
+    "join_pairs": [
+      {
+        "left": {"table": "uo", "name": "Codice_uni_uo"},
+        "right": {"table": "uo_sfe", "name": "Codice_uni_uo"}
+      }
+    ]
+  },
+  {
+    "rule_type": "Cross-Table Consistency",
+    "rule": "IF uo.Codice_uni_uo = uo_sfe.Codice_uni_uo THEN uo.Mail_responsabile = uo_sfe.Mail_responsabile",
+    "explanation": "When the same organizational unit is referenced in both Unità Organizzative and SFE tables, the manager's email must be consistent.",
+    "columns": [
+      {"table": "uo", "name": "Mail_responsabile"},
+      {"table": "uo_sfe", "name": "Mail_responsabile"}
+    ],
+    "join_pairs": [
+      {
+        "left": {"table": "uo", "name": "Codice_uni_uo"},
+        "right": {"table": "uo_sfe", "name": "Codice_uni_uo"}
+      }
+    ]
+  },
+  {
+    "rule_type": "Cross-Table Consistency",
+    "rule": "IF uo.Codice_uni_uo = uo_sfe.Codice_uni_uo THEN uo.Telefono_responsabile = uo_sfe.Telefono_responsabile",
+    "explanation": "When the same organizational unit is referenced in both Unità Organizzative and SFE tables, the manager's phone number must be consistent.",
+    "columns": [
+      {"table": "uo", "name": "Telefono_responsabile"},
+      {"table": "uo_sfe", "name": "Telefono_responsabile"}
+    ],
+    "join_pairs": [
+      {
+        "left": {"table": "uo", "name": "Codice_uni_uo"},
+        "right": {"table": "uo_sfe", "name": "Codice_uni_uo"}
+      }
+    ]
+  },
+  {
+    "rule_type": "Cross-Table Consistency",
+    "rule": "IF uo.Codice_uni_uo = uo_sfe.Codice_uni_uo THEN uo.Codice_comune_ISTAT = uo_sfe.Codice_comune_ISTAT",
+    "explanation": "When the same organizational unit is referenced in both Unità Organizzative and SFE tables, the ISTAT municipality code must be consistent.",
+    "columns": [
+      {"table": "uo", "name": "Codice_comune_ISTAT"},
+      {"table": "uo_sfe", "name": "Codice_comune_ISTAT"}
+    ],
+    "join_pairs": [
+      {
+        "left": {"table": "uo", "name": "Codice_uni_uo"},
+        "right": {"table": "uo_sfe", "name": "Codice_uni_uo"}
+      }
+    ]
+  },
+  {
+    "rule_type": "Cross-Table Consistency",
+    "rule": "IF uo.Codice_uni_uo = uo_sfe.Codice_uni_uo THEN uo.Codice_catastale_comune = uo_sfe.Codice_catastale_comune",
+    "explanation": "When the same organizational unit is referenced in both Unità Organizzative and SFE tables, the cadastral municipality code must be consistent.",
+    "columns": [
+      {"table": "uo", "name": "Codice_catastale_comune"},
+      {"table": "uo_sfe", "name": "Codice_catastale_comune"}
+    ],
+    "join_pairs": [
+      {
+        "left": {"table": "uo", "name": "Codice_uni_uo"},
+        "right": {"table": "uo_sfe", "name": "Codice_uni_uo"}
+      }
+    ]
+  },
+  {
+    "rule_type": "Cross-Table Consistency",
+    "rule": "IF uo.Codice_uni_uo = uo_sfe.Codice_uni_uo THEN uo.CAP = uo_sfe.CAP",
+    "explanation": "When the same organizational unit is referenced in both Unità Organizzative and SFE tables, the postal code must be consistent.",
+    "columns": [
+      {"table": "uo", "name": "CAP"},
+      {"table": "uo_sfe", "name": "CAP"}
+    ],
+    "join_pairs": [
+      {
+        "left": {"table": "uo", "name": "Codice_uni_uo"},
+        "right": {"table": "uo_sfe", "name": "Codice_uni_uo"}
+      }
+    ]
+  },
+  {
+    "rule_type": "Cross-Table Consistency",
+    "rule": "IF uo.Codice_uni_uo = uo_sfe.Codice_uni_uo THEN uo.Indirizzo = uo_sfe.Indirizzo",
+    "explanation": "When the same organizational unit is referenced in both Unità Organizzative and SFE tables, the address must be consistent.",
+    "columns": [
+      {"table": "uo", "name": "Indirizzo"},
+      {"table": "uo_sfe", "name": "Indirizzo"}
+    ],
+    "join_pairs": [
+      {
+        "left": {"table": "uo", "name": "Codice_uni_uo"},
+        "right": {"table": "uo_sfe", "name": "Codice_uni_uo"}
+      }
+    ]
+  },
+  {
+    "rule_type": "Cross-Table Consistency",
+    "rule": "IF uo.Codice_uni_uo = uo_sfe.Codice_uni_uo THEN uo.Telefono = uo_sfe.Telefono",
+    "explanation": "When the same organizational unit is referenced in both Unità Organizzative and SFE tables, the phone number must be consistent.",
+    "columns": [
+      {"table": "uo", "name": "Telefono"},
+      {"table": "uo_sfe", "name": "Telefono"}
+    ],
+    "join_pairs": [
+      {
+        "left": {"table": "uo", "name": "Codice_uni_uo"},
+        "right": {"table": "uo_sfe", "name": "Codice_uni_uo"}
+      }
+    ]
+  },
+  {
+    "rule_type": "Cross-Table Consistency",
+    "rule": "IF uo.Codice_uni_uo = uo_sfe.Codice_uni_uo THEN uo.Fax = uo_sfe.Fax",
+    "explanation": "When the same organizational unit is referenced in both Unità Organizzative and SFE tables, the fax number must be consistent.",
+    "columns": [
+      {"table": "uo", "name": "Fax"},
+      {"table": "uo_sfe", "name": "Fax"}
+    ],
+    "join_pairs": [
+      {
+        "left": {"table": "uo", "name": "Codice_uni_uo"},
+        "right": {"table": "uo_sfe", "name": "Codice_uni_uo"}
+      }
+    ]
+  },
+  {
+    "rule_type": "Cross-Table Consistency",
+    "rule": "IF uo.Codice_uni_uo = uo_sfe.Codice_uni_uo THEN uo.Mail1 = uo_sfe.Mail1",
+    "explanation": "When the same organizational unit is referenced in both Unità Organizzative and SFE tables, the primary email must be consistent.",
+    "columns": [
+      {"table": "uo", "name": "Mail1"},
+      {"table": "uo_sfe", "name": "Mail1"}
+    ],
+    "join_pairs": [
+      {
+        "left": {"table": "uo", "name": "Codice_uni_uo"},
+        "right": {"table": "uo_sfe", "name": "Codice_uni_uo"}
+      }
+    ]
+  },
+  {
+    "rule_type": "Cross-Table Consistency",
+    "rule": "IF uo.Codice_uni_uo = uo_sfe.Codice_uni_uo THEN uo.Tipo_Mail1 = uo_sfe.Tipo_Mail1",
+    "explanation": "When the same organizational unit is referenced in both Unità Organizzative and SFE tables, the primary email type must be consistent.",
+    "columns": [
+      {"table": "uo", "name": "Tipo_Mail1"},
+      {"table": "uo_sfe", "name": "Tipo_Mail1"}
+    ],
+    "join_pairs": [
+      {
+        "left": {"table": "uo", "name": "Codice_uni_uo"},
+        "right": {"table": "uo_sfe", "name": "Codice_uni_uo"}
+      }
+    ]
+  },
+  {
+    "rule_type": "Cross-Table Consistency",
+    "rule": "IF uo.Codice_uni_uo = uo_sfe.Codice_uni_uo THEN uo.Mail2 = uo_sfe.Mail2",
+    "explanation": "When the same organizational unit is referenced in both Unità Organizzative and SFE tables, the secondary email must be consistent.",
+    "columns": [
+      {"table": "uo", "name": "Mail2"},
+      {"table": "uo_sfe", "name": "Mail2"}
+    ],
+    "join_pairs": [
+      {
+        "left": {"table": "uo", "name": "Codice_uni_uo"},
+        "right": {"table": "uo_sfe", "name": "Codice_uni_uo"}
+      }
+    ]
+  },
+  {
+    "rule_type": "Cross-Table Consistency",
+    "rule": "IF uo.Codice_uni_uo = uo_sfe.Codice_uni_uo THEN uo.Tipo_Mail2 = uo_sfe.Tipo_Mail2",
+    "explanation": "When the same organizational unit is referenced in both Unità Organizzative and SFE tables, the secondary email type must be consistent.",
+    "columns": [
+      {"table": "uo", "name": "Tipo_Mail2"},
+      {"table": "uo_sfe", "name": "Tipo_Mail2"}
+    ],
+    "join_pairs": [
+      {
+        "left": {"table": "uo", "name": "Codice_uni_uo"},
+        "right": {"table": "uo_sfe", "name": "Codice_uni_uo"}
+      }
+    ]
+  },
+  {
+    "rule_type": "Cross-Table Consistency",
+    "rule": "IF uo.Codice_uni_uo = uo_sfe.Codice_uni_uo THEN uo.Mail3 = uo_sfe.Mail3",
+    "explanation": "When the same organizational unit is referenced in both Unità Organizzative and SFE tables, the tertiary email must be consistent.",
+    "columns": [
+      {"table": "uo", "name": "Mail3"},
+      {"table": "uo_sfe", "name": "Mail3"}
+    ],
+    "join_pairs": [
+      {
+        "left": {"table": "uo", "name": "Codice_uni_uo"},
+        "right": {"table": "uo_sfe", "name": "Codice_uni_uo"}
+      }
+    ]
+  },
+  {
+    "rule_type": "Cross-Table Consistency",
+    "rule": "IF uo.Codice_uni_uo = uo_sfe.Codice_uni_uo THEN uo.Tipo_Mail3 = uo_sfe.Tipo_Mail3",
+    "explanation": "When the same organizational unit is referenced in both Unità Organizzative and SFE tables, the tertiary email type must be consistent.",
+    "columns": [
+      {"table": "uo", "name": "Tipo_Mail3"},
+      {"table": "uo_sfe", "name": "Tipo_Mail3"}
+    ],
+    "join_pairs": [
+      {
+        "left": {"table": "uo", "name": "Codice_uni_uo"},
+        "right": {"table": "uo_sfe", "name": "Codice_uni_uo"}
+      }
+    ]
+  },
+  {
+    "rule_type": "Cross-Table Consistency",
+    "rule": "IF uo.Codice_uni_uo = uo_sfe.Codice_uni_uo THEN uo.Data_aggiornamento = uo_sfe.Data_aggiornamento",
+    "explanation": "When the same organizational unit is referenced in both Unità Organizzative and SFE tables, the last update date must be consistent.",
+    "columns": [
+      {"table": "uo", "name": "Data_aggiornamento"},
+      {"table": "uo_sfe", "name": "Data_aggiornamento"}
+    ],
+    "join_pairs": [
+      {
+        "left": {"table": "uo", "name": "Codice_uni_uo"},
+        "right": {"table": "uo_sfe", "name": "Codice_uni_uo"}
+      }
+    ]
+  }
+]
+
+
+
+
+
+
+

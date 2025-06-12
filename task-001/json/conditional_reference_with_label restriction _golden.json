@@ -1,0 +1,191 @@
+[
+    {
+        "rule_type": "Conditional Reference with Label Restriction",
+        "rule": "IF responsabili.Codice_uni_uo = uo.Codice_uni_uo THEN uo.Descrizione_uo contains 'transizione al digitale'",
+        "explanation": "When a Digital Transition Manager references an organizational unit, that unit in the Organizational Units table must contain 'digital transition' in its description. This ensures managers are always associated with dedicated digital transition offices, not unrelated units.",
+        "columns": [
+            {
+                "table": "responsabili",
+                "name": "Codice_uni_uo"
+            },
+            {
+                "table": "uo",
+                "name": "Descrizione_uo"
+            }
+        ],
+        "join_pairs": [
+            {
+                "left": {
+                    "table": "responsabili",
+                    "name": "Codice_uni_uo"
+                },
+                "right": {
+                    "table": "uo",
+                    "name": "Codice_uni_uo"
+                }
+            }
+        ]
+    },
+    {
+        "rule_type": "Conditional Reference with Label Restriction",
+        "rule": "IF responsabili.Codice_IPA = enti.Codice_IPA THEN enti.Tipo_Mail1 = 'Pec'",
+        "explanation": "When Digital Transition Managers reference an entity via IPA code, that entity's primary email type must be certified electronic mail (Pec). This ensures all digital transformation entities have legal, valid electronic communication channels.",
+        "columns": [
+            {
+                "table": "responsabili",
+                "name": "Codice_IPA"
+            },
+            {
+                "table": "enti",
+                "name": "Tipo_Mail1"
+            }
+        ],
+        "join_pairs": [
+            {
+                "left": {
+                    "table": "responsabili",
+                    "name": "Codice_IPA"
+                },
+                "right": {
+                    "table": "enti",
+                    "name": "Codice_IPA"
+                }
+            }
+        ]
+    },
+    {
+        "rule_type": "Conditional Reference with Label Restriction",
+        "rule": "IF responsabili.Codice_fiscale_ente = enti.Codice_fiscale_ente THEN enti.Tipo_Mail1 = 'Pec'",
+        "explanation": "When Digital Transition Managers reference an entity via tax ID, that entity's primary email type must be certified electronic mail (Pec). This ensures all related entities communicate through legally certified electronic mail.",
+        "columns": [
+            {
+                "table": "responsabili",
+                "name": "Codice_fiscale_ente"
+            },
+            {
+                "table": "enti",
+                "name": "Tipo_Mail1"
+            }
+        ],
+        "join_pairs": [
+            {
+                "left": {
+                    "table": "responsabili",
+                    "name": "Codice_fiscale_ente"
+                },
+                "right": {
+                    "table": "enti",
+                    "name": "Codice_fiscale_ente"
+                }
+            }
+        ]
+    },
+    {
+        "rule_type": "Conditional Reference with Label Restriction",
+        "rule": "IF uo_sfe.Codice_IPA = enti.Codice_IPA THEN enti.Tipo_Mail1 = 'Pec'",
+        "explanation": "When an organizational unit receiving electronic invoices references an entity via IPA code, that entity's primary email type must be certified electronic mail (Pec). This ensures the legality and validity of e-invoice communication channels.",
+        "columns": [
+            {
+                "table": "uo_sfe",
+                "name": "Codice_IPA"
+            },
+            {
+                "table": "enti",
+                "name": "Tipo_Mail1"
+            }
+        ],
+        "join_pairs": [
+            {
+                "left": {
+                    "table": "uo_sfe",
+                    "name": "Codice_IPA"
+                },
+                "right": {
+                    "table": "enti",
+                    "name": "Codice_IPA"
+                }
+            }
+        ]
+    },
+    {
+        "rule_type": "Conditional Reference with Label Restriction",
+        "rule": "IF uo_sfe.Codice_fiscale_ente = enti.Codice_fiscale_ente THEN enti.Tipo_Mail1 = 'Pec'",
+        "explanation": "When an organizational unit receiving electronic invoices references an entity via tax ID, that entity's primary email type must be certified electronic mail (Pec). This ensures all institutions in the e-invoicing system have valid certified electronic communication channels.",
+        "columns": [
+            {
+                "table": "uo_sfe",
+                "name": "Codice_fiscale_ente"
+            },
+            {
+                "table": "enti",
+                "name": "Tipo_Mail1"
+            }
+        ],
+        "join_pairs": [
+            {
+                "left": {
+                    "table": "uo_sfe",
+                    "name": "Codice_fiscale_ente"
+                },
+                "right": {
+                    "table": "enti",
+                    "name": "Codice_fiscale_ente"
+                }
+            }
+        ]
+    },
+    {
+        "rule_type": "Conditional Reference with Label Restriction",
+        "rule": "IF uo.Codice_IPA = enti.Codice_IPA THEN enti.Tipo_Mail1 = 'Pec'",
+        "explanation": "When any organizational unit references an entity via IPA code, that entity's primary email type must be certified electronic mail (Pec). This ensures all public administration units conduct official communications through legally certified electronic mail.",
+        "columns": [
+            {
+                "table": "uo",
+                "name": "Codice_IPA"
+            },
+            {
+                "table": "enti",
+                "name": "Tipo_Mail1"
+            }
+        ],
+        "join_pairs": [
+            {
+                "left": {
+                    "table": "uo",
+                    "name": "Codice_IPA"
+                },
+                "right": {
+                    "table": "enti",
+                    "name": "Codice_IPA"
+                }
+            }
+        ]
+    },
+    {
+        "rule_type": "Conditional Reference with Label Restriction",
+        "rule": "IF uo.Codice_fiscale_ente = enti.Codice_fiscale_ente THEN enti.Tipo_Mail1 = 'Pec'",
+        "explanation": "When any organizational unit references an entity via tax ID, that entity's primary email type must be certified electronic mail (Pec). This ensures all organizations have valid, official electronic communication channels.",
+        "columns": [
+            {
+                "table": "uo",
+                "name": "Codice_fiscale_ente"
+            },
+            {
+                "table": "enti",
+                "name": "Tipo_Mail1"
+            }
+        ],
+        "join_pairs": [
+            {
+                "left": {
+                    "table": "uo",
+                    "name": "Codice_fiscale_ente"
+                },
+                "right": {
+                    "table": "enti",
+                    "name": "Codice_fiscale_ente"
+                }
+            }
+        ]
+    }
+]

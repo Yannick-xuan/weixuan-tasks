@@ -1,0 +1,17 @@
+  [
+    {
+      "rule_type": "Cross-Table Consistency",
+      "rule": "IF uo.Codice_uni_uo = responsabili.Codice_uni_uo THEN uo.Descrizione_uo = responsabili.Descrizione_uo",
+      "explanation": "When the same organizational unit is referenced in both tables, the unit description must be consistent.",
+      "columns": [
+        {"table": "uo", "name": "Descrizione_uo"},
+        {"table": "responsabili", "name": "Descrizione_uo"}
+      ],
+      "join_pairs": [
+        {
+          "left": {"table": "uo", "name": "Codice_uni_uo"},
+          "right": {"table": "responsabili", "name": "Codice_uni_uo"}
+        }
+      ]
+    }
+  ]

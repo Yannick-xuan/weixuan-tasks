@@ -1,0 +1,63 @@
+============================= test session starts ==============================
+collecting ... collected 4 items
+
+test.py::TestValidationRules::test_rule_1_referential_integrity
+test.py::TestValidationRules::test_rule_2_cross_table_consistency
+test.py::TestValidationRules::test_rule_3_conditional_reference_existence
+test.py::TestValidationRules::test_rule_4_conditional_label_restriction
+
+============================== 4 passed in 17.78s ==============================
+
+Available Excel files:
+  - enti.xlsx
+  - unita-organizzative.xlsx
+  - unita-organizzative-che-ricevono-fatture-elettroniche.xlsx
+  - responsabili-della-transizione-al-digitale.xlsx
+
+Loading enti.xlsx as enti...
+  Successfully loaded 23655 rows
+
+Loading unita-organizzative.xlsx as uo...
+  Successfully loaded 118274 rows
+
+Loading unita-organizzative-che-ricevono-fatture-elettroniche.xlsx as uo_sfe...
+  Successfully loaded 55432 rows
+
+Loading responsabili-della-transizione-al-digitale.xlsx as responsabili...
+  Successfully loaded 20518 rows
+
+Loaded tables:
+  - enti
+  - uo
+  - uo_sfe
+  - responsabili
+PASSED   [ 25%]
+Rule 1/4 (Referential Integrity): Every responsabili.Codice_IPA must refer to an existing enti.Codice_IPA.
+----------------------------------------------------------------------
+Total rows checked: 20518
+Valid rows: 20518
+Violating rows: 0
+Violation rate: 0.00%
+PASSED [ 50%]
+Rule 2/4 (Cross-Table Consistency): IF uo.Codice_uni_uo = responsabili.Codice_uni_uo THEN uo.Descrizione_uo = responsabili.Descrizione_uo
+----------------------------------------------------------------------
+Total rows checked: 118274
+Valid rows: 118274
+Violating rows: 0
+Violation rate: 0.00%
+PASSED [ 75%]
+Rule 3/4 (Conditional Reference Existence): IF uo.Descrizione_uo contains 'transizione al digitale' THEN uo.Codice_IPA must exist in enti.Codice_IPA
+----------------------------------------------------------------------
+Total rows checked: 118274
+Valid rows: 118274
+Violating rows: 0
+Violation rate: 0.00%
+PASSED [100%]
+Rule 4/4 (Conditional Reference with Label Restriction): IF responsabili.Codice_uni_uo = uo.Codice_uni_uo THEN uo.Descrizione_uo contains 'transizione al digitale'
+----------------------------------------------------------------------
+Total rows checked: 20518
+Valid rows: 20518
+Violating rows: 0
+Violation rate: 0.00%
+
+Process finished with exit code 0
